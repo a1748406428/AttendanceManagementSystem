@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.dao.EmployeeDao">
+	<!-- sql片段 -->
+	<sql id="selecallemp">
+		<where>
+			<if test="id != 0 and id != null">
+				and id=#{id}
+			</if>
+			<if test="name != null and name!=''">
+				and name like concat('%',#{name},'%')
+			</if>
+			<if test="gonghao != null and gonghao !=''">
+				and gonghao = #{gonghao}
+			</if>
+			<if test="departid != 0 and departid != null">
+				and departid = #{departid}
+			</if>
+		</where>
+	</sql>
+	<insert id="insertEmp" parameterType="boot.pojo.EmployeeBean"
+		keyProperty="id" useGeneratedKeys="true">
+		insert into
+		t_employee(name,gonghao,education,sex,age,address,phone,basesalary,entrytime,departid)
+		values(#{name},#{gonghao},#{education},#{sex},#{age},#{address},#{phone},#{basesalary},#{entrytime},#{departid})
+	</insert>
+	<!-- 查询所有信息 -->
+	<select id="selectAllEmp" resultType="boot.pojo.EmployeeBean">
+		select * from t_employee
+	</select>
+	<!-- 根据条件查询 -->
+	<select id="selectEmpByCon" resultType="boot.pojo.EmployeeBean">
+		select * from t_employee <where>
+			<if test="id != 0 and id != null">
+				and id=#{id}
+			</if>
+			<if test="name != null and name!=''">
+				and name like concat('%',#{name},'%')
+			</if>
+			<if test="gonghao != null and gonghao !=''">
+				and gonghao = #{gonghao}
+			</if>
+			<if test="departid != 0 and departid != null">
+				and departid = #{departid}
+			</if>
+		</where>
+		<!-- 执行分页查询 -->
+		<if test="start != null and rows != null">
+			limit #{start},#{rows}
+		</if>
+	</select>
+	<!-- 查询客户总数 -->
+	<select id="selectEmpCount" resultType="Integer">
+		select count(*) from t_employee <include refid="selecallemp"/>
+	</select>
+	<delete id="deleteEmpById" parameterType="Integer">
+		delete from t_employee where id = #{id}
+	</delete>
+	
+	<update id="updateEmpById" parameterType="boot.pojo.EmployeeBean">
+		update t_employee
+		<set>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="address != null and address != ''">
+				address = #{address},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone = #{phone},
+			</if>
+			<if test="basesalary != null and basesalary != ''">
+				basesalary = #{basesalary},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+</mapper>

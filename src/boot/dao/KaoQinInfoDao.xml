@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.dao.KaoQinInfoDao">
+	<!-- 部门查询 -->
+	<sql id="selectcount">
+		select count(eid) from t_attendancerecord a,t_post p
+		where a.postid = p.id
+	</sql>
+	<!-- 总体查询 -->
+	<sql id="checkTime">
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			and checktime between STR_TO_DATE(#{startTime},"%Y/%m/%d") and STR_TO_DATE(#{endTime},"%Y/%m/%d")
+		</if>
+	</sql>
+	<!-- 对象关系映射 -->
+	<select id="selectDepart" resultType="boot.pojo.KaoQinInfoBean">
+		select * from t_attendancerecord;
+	</select>
+	<!-- 查询各部门上班正常的人员 -->
+	<select id="selectZcCount" resultType="Integer">
+		<include refid="selectcount"/>
+		<include refid="checkTime"/>
+		and (startcheck between str_to_date("08:00","%H:%i") and str_to_date("09:00","%H:%i"))
+		<if test="did != null">
+			and did = #{did}
+		</if>
+	</select>
+	<!-- 查询各部门缺勤人员 -->
+	<select id="selectQqCount" resultType="Integer">
+		<include refid="selectcount"/>
+		<include refid="checkTime"/>
+		and (absence="是")
+		<if test="did != null">
+			and did = #{did}
+		</if>
+	</select>
+	<!-- 查询各部门迟到人员 -->
+	<select id="selectCdCount" resultType="Integer">
+		<include refid="selectcount"/>
+		<include refid="checkTime"/>
+		and (startcheck between str_to_date("09:00","%H:%i") and str_to_date("21:00","%H:%i"))
+		<if test="did != null">
+			and did = #{did}
+		</if>
+	</select>
+	<!-- 查询正常人数 -->
+	<select id="selectZcCopTotalCount" resultType="Integer">
+		SELECT count(eid) FROM `t_attendancerecord` where
+		startcheck between STR_TO_DATE("08:00","%H:%i") and STR_TO_DATE("09:00","%H:%i")
+		<include refid="checkTime"/>
+	</select>
+	<!-- 查询缺勤人数 -->
+	<select id="selectQqCopTotalCount" resultType="Integer">
+		SELECT count(eid) FROM `t_attendancerecord` where absence = "是"
+		<include refid="checkTime"/>
+	</select>
+	<!-- 查询迟到人数 -->
+	<select id="selectCdCopTotalCount" resultType="Integer">
+		SELECT count(eid) FROM `t_attendancerecord` where startcheck between STR_TO_DATE("09:00","%H:%i") 
+		and STR_TO_DATE("10:00","%H:%i")
+		<include refid="checkTime"/>
+	</select>
+	<!-- 手动插入考勤人员 -->
+	<insert id="insertInToAttdence" parameterType="boot.pojo.KaoQinInfoBean" 
+	useGeneratedKeys="true" keyProperty="id">
+		insert into t_attendancerecord (checktime,startcheck,endcheck,absence,eid,postid)
+		values(#{checktime},#{startcheck},#{endcheck},#{absence},#{eid},#{postid})
+	</insert>
+</mapper>

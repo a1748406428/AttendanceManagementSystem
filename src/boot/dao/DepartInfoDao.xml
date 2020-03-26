@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.dao.DepartInfoDao">
+	<sql id="selectBycon">
+		<where>
+			<if test="name!=''and name!=null">
+				and name = #{name}
+			</if>
+		</where>
+	</sql>
+	<select id="selectAllDepInFo" resultType="boot.pojo.DepartInfoBean" parameterType="boot.pojo.DepartInfoBean">
+		select * from t_department
+		<include refid="selectBycon"/>
+		<if test="start != null and rows != null">
+			limit #{start},#{rows}
+		</if>
+	</select>
+	<select id="selectCount" resultType="Integer">
+		select count(id) from t_department
+		<include refid="selectBycon"></include>
+	</select>
+	<!-- 修改部门信息 -->
+	<update id="updateDepInfo" parameterType="boot.pojo.DepartInfoBean">
+		update t_department
+		<set> 
+		<if test="name != null and name != ''">
+			name = #{name},
+		</if>
+		<if test="officelocal != null and officelocal != ''">
+			officelocal = #{officelocal},
+		</if>
+		<if test="performance != null and performance != ''">
+			performance = #{performance},
+		</if>
+		<if test="fuli != null and fuli != ''">
+			fuli = #{fuli},
+		</if>
+		</set>
+		where id = #{id}
+	</update>
+	<!-- 删除信息 -->
+	<delete id="deleteDepById" parameterType="Integer">
+		delete from t_department where id = #{id}
+	</delete>
+</mapper>

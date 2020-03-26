@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!--1.全局的setting配置，根据需要添加 -->
+	<settings>
+		<!--开启二级缓存 -->
+		<setting name="cacheEnabled" value="true" />
+	</settings>
+	<!--2.配置别名，也可以根据需要添加 -->
+<!-- 	<typeAliases>
+		批量扫描别名:扫描整个包下的所有类，别名为类名（首字母大写或小写均可以）
+		<package name="boot.po" />
+		需要扫描其他包另加一行
+		<package name="boot.dao" />
+		<package name="boot.pojo" />
+	</typeAliases> -->
+
+	<!--3.配置Mapper -->
+	<!-- <mappers> 由于要使用Mybatis与Spring的整合包进行mapper批量扫描，这里就不需要配置了 但必须遵循一个规则：mapper.java和mapper.xml必须同名且放在同一个目录下 
+		</mappers> -->
+</configuration>
