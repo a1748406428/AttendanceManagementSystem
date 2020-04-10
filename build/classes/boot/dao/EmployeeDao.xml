@@ -30,7 +30,8 @@
 	</select>
 	<!-- 根据条件查询 -->
 	<select id="selectEmpByCon" resultType="boot.pojo.EmployeeBean">
-		select * from t_employee <where>
+		select e.id,e.name,gonghao,education,sex,age,address,phone,basesalary,entrytime,d.`name` as "depname",d.id as "did" from t_employee e,t_department d
+  <where> d.id = e.departid
 			<if test="id != 0 and id != null">
 				and id=#{id}
 			</if>

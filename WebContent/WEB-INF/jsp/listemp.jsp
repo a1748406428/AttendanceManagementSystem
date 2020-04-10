@@ -50,7 +50,7 @@
     <th>电话号码</th>
     <th>基础工资</th>
     <th>入职时间</th>
-    <th>部门编号</th>
+    <th>部门</th>
     <th>修改</th>
     <th>删除</th>
     </tr>
@@ -68,7 +68,7 @@
     <td>${result.phone }</td>
     <td>${result.basesalary }</td>
     <td>${result.entrytime }</td>
-    <td>${result.departid }</td>
+    <td>${result.depname }</td>
     <td><button class="btn btn-info btn-sm" data-toggle="modal"  data-target="#myModal" >修改</button></td>
     <td><button class="btn btn-danger btn-sm" data-toggle="modal"  data-target="#deletemodal">删除</button></td>
   </tr>

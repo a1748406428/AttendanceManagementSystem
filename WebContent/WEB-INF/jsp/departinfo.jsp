@@ -26,7 +26,7 @@ $(function() {
 	<form action="selectdep.action" id="tijiao">
 		部门名称：<input type="text" name="name" value="${departPageBan.name}">
 		<button type="button" id="chaxun" class="btn btn-primary btn-sm">查询</button>
-		<button type="button" id="chaxun" class="btn btn-primary btn-sm">添加部门</button>
+		<button type="button" data-toggle="modal"  data-target="#insertDep" class="btn btn-primary btn-sm">添加部门</button>
 	</form>
 	
 	<table class="table table-condensed table-hover table-bordered" id="tab">
@@ -99,6 +99,43 @@ $(function() {
 		</div>
 	</div>
 </div>
+<!-- 添加部门模态框 -->
+<div class="modal fade" id="insertDep" tabindex = "-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">添加部门</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div>
+			<div class="modal-body">
+	<form class="bs-example bs-example-form" role="form">
+      <div class="input-group">
+      	 <span class="input-group-addon">部门名称：</span>
+         <input type="text" class="form-control" placeholder="部门名称">
+      </div>
+      <br>
+      <div class="input-group">
+         办公地点：<input type="text" class="form-control" placeholder="办公地点">
+         <span class="input-group-addon"></span>
+      </div>
+      <br>
+      <div class="input-group">
+         绩效考核：<input type="text" class="form-control" placeholder="绩效考核">
+         <span class="input-group-addon"></span>
+      </div><br>
+      <div class="input-group">
+         部门福利：<input type="text" class="form-control" placeholder="部门福利">
+         <span class="input-group-addon"></span>
+      </div>
+   </form>
+			</div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭 </button>
+            <button type="button" id="insertbtn" class="btn btn-primary btn-sm">添加</button>
+         </div>
+			
+		</div>
+	</div>
+</div>
 <div class="modal fade" id="deletemodal" tabindex = "-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content message_align">
@@ -121,7 +158,6 @@ $(function() {
                                                 id="deletebtn">确认</button>
                                         </div>
                                     </div>
-                                    <!-- /.modal-content -->
                                 </div>
 		 </div>
 		 </div>
@@ -176,6 +212,34 @@ $(function() {
 		$("#deletebtn").click(function() {
 				var id = $("#temp1").val();
 				window.location.href="deleteById.action?id="+id;
+		})
+	})
+</script>
+<!-- 添加部门信息 -->
+<script type="text/javascript">
+	$(function() {
+		$("#insertbtn").click(function() {
+			var name = $("#depname").val();
+			var officelocal = $("#deplocal").val();
+			var performance = $("#jixiaokaohe").val();
+			var fuli = $("#bumenfuli").val();
+			$.ajax(
+				{
+				url:"deleteEmpById.action",
+				type:"post",
+				data:JSON.stringify({
+					name:name,
+					officelocal:officelocal,
+					performance:performance,
+					fuli:fuli
+				}),
+				contentType:"application/json;charset=UTF-8",
+				success:function(data){
+					if(data!=null){
+						alert("修改成功")
+					}
+				}
+			})
 		})
 	})
 </script>

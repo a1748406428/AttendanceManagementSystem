@@ -62,35 +62,35 @@
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>员工管理
 					</a>
 						<ul id="exampledropdownDropdown0" class="collapse list-unstyled ">
-							<li><a href="javascript:void(0)"><span id="register" src="">员工注册</span></a></li>
-							<li><a href="javascript:void(0)"><span id="yuangong" src="toList.action">员工查询</span></a></li>
+							<li id="register" src=""><a href="javascript:void(0)"><span >员工注册</span></a></li>
+							<li id="yuangong" src="toList.action"><a href="javascript:void(0)"><span >员工信息详情</span></a></li>
 						</ul></li>
 					<li><a href="#exampledropdownDropdown1" aria-expanded="false"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>考勤管理
 					</a>
 						<ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
-							<li><a href="javascript:void(0)"><span id="kaoqinqingkuang" src="kqqk.action">考勤情况</span></a></li>
-							<li><a href="javascript:void(0)"><span id="shoudongtianjia" src="sdtj.action">手动添加考勤</span></a></li>
+							<li id="kaoqinqingkuang" src="kqqk.action"><a href="javascript:void(0)"><span >考勤情况</span></a></li>
+							<li id="shoudongtianjia" src="sdtj.action"><a href="javascript:void(0)"><span >手动添加考勤</span></a></li>
 						</ul></li>
 					<li><a href="#exampledropdownDropdown2" aria-expanded="false"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>部门管理
 					</a>
 						<ul id="exampledropdownDropdown2" class="collapse list-unstyled ">
-							<li><a href="javascript:void(0)"><span id="departinfo" src="tobmgl.action">部门信息管理</span></a></li>
-							<li><a href="javascript:void(0)"><span id="chengyuangaikuang" src="">部门成员概况</span></a></li>
-							<li><a href="javascript:void(0)"><span id="zongtiqingkuang" src="">人员调度</span></a></li>
-							<li><a href="javascript:void(0)"><span id="jixiaokaohe" src="">绩效评定与考核</span></a></li>
+							<li id="departinfo" src="tobmgl.action"><a href="javascript:void(0)"><span >部门信息管理</span></a></li>
+							<li id="renshidiaodong" src="bmcygl.action"><a href="javascript:void(0)"><span >人事调动与任务分发</span></a></li>
+							<li id="jixiaokaohe" src="jxpd.action"><a href="javascript:void(0)"><span >绩效评定与考核</span></a></li>
 						</ul></li>
 					<!-- 日常管理 -->	
 					<li><a href="#exampledropdownDropdown4" aria-expanded="false"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>员工日常管理
 					</a>
 						<ul id="exampledropdownDropdown4" class="collapse list-unstyled ">
-							<li><a href="javascript:void(0)"><span id="departinfo" src="">请假申请单</span></a></li>
-							<li><a href="javascript:void(0)"><span id="chengyuangaikuang" src="">调补休管理</span></a></li>
-							<li><a href="javascript:void(0)"><span id="chengyuangaikuang" src="">补偿计划</span></a></li>
+							<li id="qingjiashenqing" src="qjsq.action"><a href="javascript:void(0)"><span >请假申请单</span></a></li>
+							<li id="tiaoxiuguanli" src="txgl.action"><a href="javascript:void(0)"><span >调补休管理</span></a></li>
+							<li id="buchangjiahua" src="bcjh.action"><a href="javascript:void(0)"><span >补偿计划</span></a></li>
+							<li id="tongzhiguangbo" src="tzgb.action"><a href="javascript:void(0)"><span >通知广播</span></a></li>
 						</ul></li>
-					<li><a href="javascript:void(0)"><span id="chengyuangaikuang" src="">排班管理</span></a></li>
+					<li id="paibanguanli" src="pbgl.action"><a href="javascript:void(0)"><span><i class="icon-interface-windows"></i>排班管理</span></a></li>
 					</a></li>
 				</ul>
 			</div>
@@ -256,46 +256,37 @@
 	</div>
 	<!-- JavaScript files-->
 	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js">
-		
-	</script>
+	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
 	<script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js">
-		
-	</script>
-	<script src="vendor/chart.js/Chart.min.js"></script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<script
 		src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="js/charts-home.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
 	
 </body>
 <script type="text/javascript">
 	$(function() {
-		$("#departinfo").click(function() {
-			var url = $("#departinfo").attr('src')
-			$("#mframe").attr('src',url);
-		})
-		$("#yuangong").click(function() {
-			var url = $("#yuangong").attr('src')
-			$("#mframe").attr('src',url);
-		})
-		$("#kaoqinqingkuang").click(function() {
-			var url = $("#kaoqinqingkuang").attr('src')
-			$("#mframe").attr('src',url);
-		})
-		$("#shoudongtianjia").click(function() {
-			var url = $("#shoudongtianjia").attr('src')
-			$("#mframe").attr('src',url);
-		})
-		$("#departinfo").click(function() {
-			var url = $("#departinfo").attr('src')
-			$("#mframe").attr('src',url);
-		})
+		function toSomeWhere(someid) {
+			$("#"+someid).click(function() {
+				var url = $("#"+someid).attr('src')
+				$("#mframe").attr('src',url);
+			})
+		}
+		toSomeWhere("register")
+		toSomeWhere("yuangong")
+		toSomeWhere("kaoqinqingkuang")
+		toSomeWhere("shoudongtianjia")
+		toSomeWhere("departinfo")
+		toSomeWhere("renshidiaodong")
+		toSomeWhere("jixiaokaohe")
+		toSomeWhere("tiaoxiuguanli");
+		toSomeWhere("qingjiashenqing");
+		toSomeWhere("buchangjiahua");
+		toSomeWhere("tongzhiguangbo");
+		toSomeWhere("paibanguanli");
 	})
 	</script>
-		
 </html>

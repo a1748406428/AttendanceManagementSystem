@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.dao.DailyMannageDao">
+	
+	<!-- 查看个人请假条 -->
+	<select id="selectPersonalQingjia" resultType="boot.pojo.JiaTiaoBean" parameterType="Map">
+		select id,name,totalday,reason,daytime,togo,phone,eid,status from t_personqingjia 
+		<where>
+			<if test="time != null and time != ''">
+				and daytime = #{time}
+			</if>
+		</where>
+		<if test="offset != null and limit != null">
+			limit #{offset},#{limit}
+		</if>
+	</select>
+	<!-- 查看请假总条数 -->
+	<select id="selectPersonalJiaTiaoCount" resultType="Integer">
+		select count(id) from t_personqingjia
+		<where>
+			<if test="time != null and time != ''">
+				and time = #{time}
+			</if>
+		</where>
+	</select>
+	<!-- 修改状态 -->
+	<update id="updateJiTiJiaTiaoStatus">
+		update t_departqingjia set status = #{status} where id = #{id}
+	</update>
+	<!-- 删除单个信息 -->
+	<delete id="deleteMsgByEid">
+		delete from t_personqingjia where id = #{id}
+	</delete>
+	<!-- 查询集体假条信息 -->
+	<select id="selectJiTiJiaTiao" resultType="boot.pojo.JiTiJiaTiaoBean">
+		select d.id,dep.`name` as "departname",d.totalday,d.reason,d.daytime,d.togo,e.phone,l.`name` as "leadername",d.status 
+		from t_departqingjia d,t_leader l,t_department dep,t_employee e 
+		where d.leaderid = l.id 
+		and dep.id = d.did and e.id = l.eid
+		<where>
+			<if test="time != null and time != ''">
+				and daytime = #{time}
+			</if>
+		</where>
+		<if test="offset != null and limit != null">
+			limit #{offset},#{limit}
+		</if>
+	</select>
+	<select id="selectJiTiJiaTiaoCount" resultType="Integer">
+		select count(id) from t_departqingjia
+	</select>
+</mapper>

@@ -44,7 +44,7 @@
 			<bean class="boot.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors> -->
-	<bean
+<!-- 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
 	</bean>
 	<bean
@@ -54,6 +54,6 @@
 				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 	
 </beans>

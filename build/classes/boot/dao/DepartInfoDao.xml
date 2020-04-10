@@ -42,4 +42,58 @@
 	<delete id="deleteDepById" parameterType="Integer">
 		delete from t_department where id = #{id}
 	</delete>
+	<!-- 添加部门 -->
+	<insert id="insertDep" parameterType="boot.pojo.DepartInfoBean" useGeneratedKeys="true" keyProperty="id">
+		insert into t_department(name,officelocal,performance,fuli)
+		values(#{name},#{officelocal},#{performance},#{fuli})
+	</insert>
+	<!-- 查看意向书 -->
+	<select id="selectMessage" resultType="boot.vo.YiXiangMessageBean" parameterType="Map">
+		select * from t_postchangeapplication 
+		<where>
+			<if test="time != null and time != ''">
+				and time = #{time}
+			</if>
+		</where>
+		<if test="offset != null and limit != null">
+			limit #{offset},#{limit}
+		</if>
+	</select>
+	<!-- 查看意向书总条数 -->
+	<select id="selectMessageCount" resultType="Integer">
+		select count(eid) from t_postchangeapplication
+		<where>
+			<if test="time != null and time != ''">
+				and time = #{time}
+			</if>
+		</where>
+	</select>
+	<!-- 修改状态 -->
+	<update id="updateMessageStatus">
+		update t_postchangeapplication set status = #{status} where eid = #{eid}
+	</update>
+	<!-- 删除单个信息 -->
+	<delete id="deleteMsgByEid">
+		delete from t_postchangeapplication where eid = #{eid}
+	</delete>
+	<!-- 更改员工岗位 -->
+	<update id="updateEmpDepPostById" parameterType="boot.pojo.EmployeeBean">
+		update t_employee 
+		<set>
+			<if test="departid != null and departid != ''">
+				departid = #{departid},
+			</if>
+			<if test="postid != null and postid != ''">
+				postid = #{postid},
+			</if>
+			<if test="basesalary != null and basesalary != ''">
+				basesalary = #{basesalary},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<!-- 部门岗位联动效果 -->
+	<select id="dynamicDepAndPost" resultType="boot.pojo.PostBean">
+		select p.id,p.`name`,p.did from t_post p,t_department d where p.did = d.id and d.id = #{did}
+	</select>
 </mapper>

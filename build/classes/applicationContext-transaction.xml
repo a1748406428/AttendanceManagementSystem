@@ -37,7 +37,7 @@
 	</bean>
 	<!-- 通知 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
+		    <tx:attributes>
 		<!-- 传播行为 -->
 			<!-- <tx:method name="sava*" propagation="REQUIRED"/>
 			<tx:method name="insert*" propagation="REQUIRED"/>
@@ -48,7 +48,7 @@
 			<tx:method name="*" propagation="SUPPORTS" read-only="true"/>
 			<!-- <tx:method name="select" propagation="SUPPORTS" read-only="true"/>
 			<tx:method name="get" propagation="SUPPORTS" read-only="true"/> -->
-		</tx:attributes>
+			</tx:attributes>
 	</tx:advice>
 	<!-- 切面 -->
 	<aop:config>

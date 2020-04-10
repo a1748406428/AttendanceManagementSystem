@@ -5,11 +5,54 @@
 <head>
 <meta charset="UTF-8">
 <title>请假申请单</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+<!-- 	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap-table.min.css">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<link rel="stylesheet" href="css/fontawesome.min.css">
+	<link rel="stylesheet" href="css/all.css">
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/fontawesome.min.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table.js"></script> -->
+	<!-- <script type="text/javascript" src="js/bootstrap-table.min.js"></script> -->
+    <script type="text/javascript" src="js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/qingjiadan.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
 </head>
 <body>
 		<!-- 浏览请假申请单 -->
-		<button type="button">个人假条</button>
-		<button type="button">集体假条</button>
+<div class="container-fluid">
+		
+<div id="toolbar">
+<form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2">
+    <div class="input-group-prepend">
+      <div class="input-group-text">选择时间：</div>
+    </div>
+    <div class="btn-group">
+    <input type="date" id="time" class="form-control">
+	<select class="custom-select" id="classifyjiatiao">
+			<option>-请选择-</option>
+			<option value="person">个人假条</option>
+			<option value="jiti">集体假条</option>
+		</select>
+	<button id="chaxunjiatiao" type="button" class="btn btn-info form-control"><span class="fa fa-search">查询</span></button>
+	</div>
+  </div>
+</form>
+</div>		
 		<!-- 假条需要实现哪些功能？
 			   申请是否批准
 			   	不予批准则回复内容，
@@ -30,44 +73,39 @@
 					但是权限是不可能一直开通的，根据请假天数关闭权限，
 					根据请假天数管理员自己手动关闭，自动关闭还未想好
 		 -->
-		<table>
-			<thead>
+		<div id="persondiv" style="display: none;">
+		<table id="qingjiatable" style="table-layout:fixed;" class="table table-condensed table-hover table-bordered">
+			<thead >
 				<tr>
-					<th>姓名</th>
-					<th>请假类型</th>
-					<th>开始时间</th>
-					<th>结束时间</th>
-					<th>请假天数</th>
-					<th>所属部门</th>
-					<th>联系方式</th>
-					<th>操作一</th>
-					<th>操作二</th>
+					<th data-field="state" data-checkbox='ture'></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>	
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
 		</table>
+		</div>
 		<!-- 集体假条接口 -->
-		<table>
+		<div id="jititable" style="display: none;">
+		<table id="jitijiatable" style="table-layout:fixed;" class="table table-condensed table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>部门名称</th>
-					<th>请假类型</th>
-					<th>开始时间</th>
-					<th>结束时间</th>
-					<th>请假天数</th>
-					<th>联系方式</th>
-					<th>一键打卡权限</th>
-					<th>操作一</th>
-					<th>操作二</th>
+					<th data-field="state" data-checkbox='ture'></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>	
 			<tr>
@@ -82,12 +120,131 @@
 				<td>不同意</td>
 			</tr>
 		</table>
+		</div>
 <!-- 		集体假条点击同意后则会开通对应部门的员工一键打卡权限
 			-->
 			<!-- 请假统计将记录到个人考勤中 
 				点击同意后将每个人的考勤记录
 			
 			-->
+	<!-- 个人假条模态框 -->
+	<div class="modal fade bs-example" id="myModal" tabindex = "-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">详情信息</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div>
+			<div class="modal-body">
+	<form class="form-horizontal" role="form">
+      <div class="form-group" id="temp">
+      </div>
+      <input id="linshiid" type="text" style="display: none;">
+   </form>
+			</div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="butongyi" data-dismiss="modal">不同意 </button>
+            <button type="button" id="tongyi" class="btn btn-primary btn-sm" data-dismiss="modal">同意</button>
+         </div>
 			
+		</div>
+	</div>
+</div>
+<!-- 是否删除模态框 -->
+<div class="modal fade" id="deletemodal" tabindex = "-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content message_align">
+                                        <div class="modal-header">
+                                        <h6 class="modal-title">系统提示</h6>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- 隐藏需要删除的id -->
+                                          <input type="text" id="temp1"style="display: none;">
+                                            <p>是否删除该信息？</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary"
+                                                id="deletebtn">确认</button>
+                                        </div>
+                                    </div>
+                                </div>
+		 </div>
+		 <!-- 集体假条模态框 -->
+	<div class="modal fade bs-example" id="jitimodal" tabindex = "-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">详情信息</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div>
+			<div class="modal-body">
+	<form class="form-horizontal" role="form">
+      <div class="form-group" id="jititemp">
+      </div>
+      <input id="jitilinshiid" type="text" style="display: none;">
+   </form>
+			</div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="jitibutongyi" data-dismiss="modal">不同意 </button>
+            <button type="button" id="jititongyi" class="btn btn-primary btn-sm" data-dismiss="modal">同意</button>
+         </div>
+			
+		</div>
+	</div>
+</div>
+<!-- 是否删除模态框 -->
+<div class="modal fade" id="jitideletemodal" tabindex = "-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content message_align">
+                                        <div class="modal-header">
+                                        <h6 class="modal-title">系统提示</h6>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- 隐藏需要删除的id -->
+                                          <input type="text" id="jititempdelete"style="display: none;">
+                                            <p>是否删除该信息？</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary"
+                                                id="jitideletebtn">确认</button>
+                                        </div>
+                                    </div>
+                                </div>
+		 </div>
+		 </div>
 </body>
+<!-- 删除按钮 -->
+<script type="text/javascript">
+	$(function(){
+		$("#qingjiatable").on("click",":button",function(){
+			var tempeid = $(this).closest("tr").find("td").eq(2).text();
+			$("#temp1").val(id);
+		})
+		$("#deletebtn").click(function() {
+				var eid = $("#temp1").val();
+				window.location.href="deleteOneByeid.action?id="+id;
+				$("#qingjiatable").bootstrapTable('refresh')
+		})
+		//集体假条删除按钮
+		$("#jitijiatable").on("click",":button",function(){
+			var tempid = $(this).closest("tr").find("td").eq(2).text();
+			$("#jititempdelete").val(tempid);
+		})
+		$("#jitideletebtn").click(function() {
+				var id = $("#jititempdelete").val();
+				window.location.href="deleteOneByeid.action?id="+id;
+				$("#jitijiatable").bootstrapTable('refresh')
+		})
+	})
+</script>
 </html>
