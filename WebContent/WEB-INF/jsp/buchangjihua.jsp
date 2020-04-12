@@ -13,162 +13,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/buchangjihua.js"></script>
 </head>
 <script type="text/javascript">
-	$(function() {
-		function formatDate(date) {
-			var y = date.getFullYear();
-			var m = date.getMonth() + 1;
-			m = m < 10 ? '0' + m : m;
-			var d = date.getDate();
-			d = d < 10 ? ('0' + d) : d;
-			return y + '/' + m + '/' + d;
-		}
-		$("#hzbtn").click(function () {
-			var monthstartbefore = $("#monthstart").val();
-			var monthendbefore = $("#monthend").val();
-			var monthstart = formatDate(new Date(monthstartbefore)).toString();
-			var monthend = formatDate(new Date(monthendbefore)).toString();
-			$.post("huizong.action",{monthstart:monthstart,monthend:monthend},function(data,status){
-				if(data!=null){
-					alert("汇总成功")
-				}
-			})
-			}		
-		)
-		$("#jcbtn").click(function () {
-			var month = parseInt($("#month").val());
-			$("#jiangchengtable")
-			.bootstrapTable('destroy')
-			.bootstrapTable(
-					{
-						url : "selectjiangcheng.action",// 数据请求路径
-						clickToSelect : true, // 点击表格项即可选择
-						dataType : "json", // 后端数据传递类型
-						pageSize : 5,
-						cache : "false",
-						pageList : [ 5, 10, 20 ],
-						contentType : "application/x-www-form-urlencoded",
-						method : 'get', // 请求类型
-						dataField : "data", // 很重要，这是后端返回的实体数据！
-						sidePagination : "server",
-						pagination : true,
-						pageNumber : 1,
-						showToggle : true,
-						uniqueId : "id",
-						search : true,
-						toolbar : "#toolbar",
-						showColumns : true, // 是否显示所有的列
-						showRefresh : true,
-						clickToSelect : true,
-						queryParamsType : 'limit',
-						// 是否显示详细视图和列表视图的切换按钮
-						queryParams : function(params) {// 自定义参数，这里的参数是传给后台的，我这是是分页用的
-							return {// 这里的params是table提供的
-								offset : params.offset,// 从数据库第几条记录开始
-								limit : params.limit, // 找多少条
-								month : month
-							};
-						},
-						responseHandler : function(res) {
-							// 在ajax获取到数据，渲染表格之前，修改数据源
-							return res;
-						},
-						columns : [
-								{
-									field : 'state'
-								},
-								{
-									field : 'id',
-									title : '序号',
-									align : 'center'
-								},
-								{
-									field : 'ename',
-									title : '姓名',
-									align : 'center'
-								},
-								{
-									field : 'reason',
-									title : '请假原因',
-									align : 'center'
-								},
-								{
-									field : 'totalday',
-									title : '加班天数',
-									align : 'center'
-								},
-								{
-									field : 'jiangli',
-									title : '应得奖励',
-									align : 'center'
-								},
-								{
-									field : 'status',
-									title : '状态',
-									align : 'center',
-									formatter : function(
-											value, row,
-											index) {
-										var a = "";
-										if (value == "未审核") {
-											a = "<span style='color:#fa9f00'>"
-													+ value
-													+ "</span>";
-										} else if (value == "已审核") {
-											a = "<span style='color:#3e8f3e'><i class='fa fa-times-circle-o' aria-hidden='true'></i>"
-													+ value
-													+ "</span>";
-										} 
-										return a;
-									}
-								},
-								{
-									field : 'month',
-									title : '月份',
-									align : 'center'
-								},
-								{
-									field : 'eid',
-									title : '员工编号',
-									align : 'center'
-								},
-								{
-									title : '操作',
-									field : 'id',
-									align : 'center',
-									formatter : function(
-											value, row,
-											index) {
-										var a = "<button type='button' class = 'btn btn-info btn-sm' data-toggle='modal' data-target='#jianglimodal' id='detail'><span class='fa fa-plus'>详情</span></button>"
-										return a;
-									}
-								},
-								{
-									title : '操作',
-									field : 'id',
-									align : 'center',
-									formatter : function(
-											value, row,
-											index) {
-										var b = "<button type='button' class = 'btn btn-danger btn-sm' data-toggle='modal' data-target='#jianglideletemodal' id='delete'><span class='fa fa-trash'>删除</span></button>"
-										return b;
-									}
-								},
-
-						]
-					});
-		}) 
-	})
+	
 </script>
 <body>
 <div class="container-fluid">
-	员工编号<input>
-	<form action="">
-	请选择时间段：<input type="date" id="monthstart">to
+<div id="toolbar">
+	<form class="form-inline">
+  <div class="input-group mb-2 mr-sm-2">
+    <div class="input-group-prepend">
+      <div class="input-group-text">选择时间:</div>
+    </div>
+    <div class="btn-group">
+    <input type="date" id="monthstart">--
 	<input type="date" id="monthend">
-	<button type="button" id="hzbtn">一键汇总员工奖惩</button>
-	<select id="month">
+	<button id="chaxunmsg" type="button" id="hzbtn" class="btn btn-info form-control"><span class="fa ">汇总奖惩</span></button>
+	<select id="month" class="custom-select">
 		<option value="">-选择月份-</option>
 		<option value="1">一月</option>
 		<option value="2">二月</option>
@@ -183,8 +45,11 @@
 		<option value="11">十一月</option>
 		<option value="12">十二月</option>
 	</select>
-	<button type="button" id="jcbtn">查看员工奖惩情况</button>
-	</form>
+	<button  type="button" class="btn btn-info form-control" id="jcbtn"><span class="fa fa-search">查询奖惩情况</span></button>
+	</div>
+  </div>
+</form>
+</div>
 	<table id="jiangchengtable">
 		<thead>
 		<tr>
@@ -206,13 +71,30 @@
 			<h4 class="modal-title" id="myModalLabel">详情信息</h4>
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div>
 			<div class="modal-body">
-	<form class="form-horizontal" role="form">
+<!-- 	<form class="form-horizontal" role="form">
       <div class="form-group" id="jianglitemp">
       		个人平均日薪:<input type="text" id="pingjunrixin" placeholder="单击获取值"><br>
       		加班天数:<input type="text" id="jiabantianshu"><br>
           	应得奖励:<input type="text" id="yingdejiangli">
+          	
       </div>
-      <input id="jianglilinshiid" type="text" style="display: none;">
+   </form> -->
+   	<form class="bs-example bs-example-form" role="form">
+      <div class="input-group input-group">
+      <span class="input-group-addon">平均日薪:</span>
+        <input type="text" class="form-control" id="pingjunrixin" readonly="readonly">
+      </div>
+      <br>
+      <div class="input-group">
+      	 <span class="input-group-addon">加班天数:</span>
+         <input type="text" class="form-control" id="jiabantianshu"  placeholder="加班天数">
+      </div>
+      <br>
+      <div class="input-group">
+         应得奖励:<input type="text" class="form-control" id="yingdejiangli" placeholder="应得奖励">
+         <span class="input-group-addon"></span>
+      </div>
+        <input id="jianglilinshiid" type="text" style="display: none;">
       <input id="jianglirowid" type="text" style="display: none;">
    </form>
 			</div>
@@ -251,42 +133,4 @@
 		 </div>
 		</div>
 </body>
-<script type="text/javascript">
-//模态框操作
-$("#jiangchengtable").on("click", ":button", function() {
-	var tempeid = $(this).closest("tr").find("td").eq(8).text();
-	var jiabantianshu = $(this).closest("tr").find("td").eq(4).text();
-	var rowid = $(this).closest("tr").find("td").eq(1).text();
-	$("#jianglilinshiid").val(tempeid);
-	$("#jiabantianshu").val(jiabantianshu);
-	$("#jianglirowid").val(rowid);
-})
-$("#pingjunrixin").mousedown(function () {
-	var id = $("#jianglilinshiid").val();
-	var jiabantianshu = $("#jiabantianshu").val();
-
-	$.post("caculatormoney.action",{id:id,jiabantianshu:jiabantianshu},function(data,status){
-		if(data!=null){
-			$("#pingjunrixin").val(data.avgDailySal);
-			$("#yingdejiangli").val(data.jiangli);
-		}
-	})
-})
-$("#jianglitongyi").click(function() {
-	var id = $("#jianglirowid").val();
-	var yingdejiangli = $("#yingdejiangli").val();
-	$.post("jianglishenhe.action", {id:id,status:"已审核",yingdejiangli:yingdejiangli},function(data, status) {
-		if(data=="200") {
-			$("#jiangchengtable").bootstrapTable('refresh');
-			$("#pingjunrixin").val("");
-			$("#yingdejiangli").val("");
-		}
-	})
-})
-
-$("#jianglibutongyi").click(function() {
-	$("#pingjunrixin").val("");
-	$("#yingdejiangli").val("");
-})
-</script>
 </html>

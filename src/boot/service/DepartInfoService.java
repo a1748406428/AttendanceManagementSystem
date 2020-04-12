@@ -1,10 +1,8 @@
 package boot.service;
 
 import java.util.List;
+
 import java.util.Map;
-
-import org.springframework.stereotype.Service;
-
 import boot.page.utils.Page;
 import boot.pojo.DepartInfoBean;
 import boot.pojo.EmployeeBean;

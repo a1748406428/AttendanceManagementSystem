@@ -1,9 +1,6 @@
 package boot.service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import boot.po.NamePwdBean;
 import boot.pojo.UserBean;
 import boot.vo.CityBean;
