@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/style3.css">
 <!-- Font Awesome CSS-->
 <link rel="stylesheet"
 	href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
@@ -69,8 +70,9 @@
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>考勤管理
 					</a>
 						<ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
-							<li id="kaoqinqingkuang" src="kqqk.action"><a href="javascript:void(0)"><span >考勤情况</span></a></li>
+							<li id="kaoqinqingkuang" src="kqqk.action"><a href="javascript:void(0)"><span >考勤实时分布图</span></a></li>
 							<li id="shoudongtianjia" src="sdtj.action"><a href="javascript:void(0)"><span >手动添加考勤</span></a></li>
+							<li id="kaoqinzongbiao" src="kqzb.action"><a href="javascript:void(0)"><span >考勤总表</span></a></li>
 						</ul></li>
 					<li><a href="#exampledropdownDropdown2" aria-expanded="false"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>部门管理
@@ -97,6 +99,24 @@
 		</div>
 	</nav>
 	<div class="page">
+		<div class="loading">
+				<div id="app">
+	<div class="text-wrapper">
+		<div class="text part1">
+			<div>
+				<span class="letter"><div class="character">L</div> <span></span></span>
+				<span class="letter"><div class="character">o</div> <span></span></span>
+				<span class="letter"><div class="character">a</div> <span></span></span>
+				<span class="letter"><div class="character">d</div> <span></span></span>
+				<span class="letter"><div class="character">i</div> <span></span></span>
+				<span class="letter"><div class="character">n</div> <span></span></span>
+				<span class="letter"><div class="character">g</div> <span></span></span>
+			</div>
+		</div>
+		<div class="how-to"><span>正在加载中，请您耐心等待...</span></div>
+	</div>
+</div>
+		</div>
 		<!-- navbar-->
 		<header class="header">
 			<nav class="navbar">
@@ -243,16 +263,6 @@
 		<div class="embed-responsive embed-responsive-21by9">
 			<iframe name="manage" id="mframe" class="embed-responsive-item" src=""></iframe>
 		 </div>
-		<footer class="main-footer">
-			<!-- <div class="container-fluid"> -->
-				<!-- <div class="row"> -->
-					<!-- <div class="col-sm-6"> -->
-						<p>Copyright &copy; 2019.Company name All rights reserved.</p>
-					<!-- </div> -->
-					<!-- <div class="col-sm-6 text-right"></div> -->
-				<!-- </div> -->
-			<!-- </div> -->
-		</footer>
 	</div>
 	<!-- JavaScript files-->
 	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
@@ -282,11 +292,17 @@
 		toSomeWhere("departinfo")
 		toSomeWhere("renshidiaodong")
 		toSomeWhere("jixiaokaohe")
+		toSomeWhere("kaoqinzongbiao")
 		toSomeWhere("tiaoxiuguanli");
 		toSomeWhere("qingjiashenqing");
 		toSomeWhere("buchangjiahua");
 		toSomeWhere("tongzhiguangbo");
 		toSomeWhere("paibanguanli");
+		document.onreadystatechange = function () {//即在加载的过程中执行下面的代码
+			if(document.readyState=="complete"){//complete加载完成
+				$(".loading").fadeOut();
+			}
+		}
 	})
 	</script>
 </html>

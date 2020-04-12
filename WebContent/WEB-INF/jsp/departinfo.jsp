@@ -11,7 +11,7 @@
 <title>部门信息</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </head>
 <script type="text/javascript">
 $(function() {
@@ -28,7 +28,7 @@ $(function() {
 		<button type="button" id="chaxun" class="btn btn-primary btn-sm">查询</button>
 		<button type="button" data-toggle="modal"  data-target="#insertDep" class="btn btn-primary btn-sm">添加部门</button>
 	</form>
-	
+
 	<table class="table table-condensed table-hover table-bordered" id="tab">
 		<thead>
 			<tr>

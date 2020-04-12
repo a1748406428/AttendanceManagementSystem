@@ -5,36 +5,42 @@
 <head>
 <meta charset="UTF-8">
 <title>请假申请单</title>
-<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/style3.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- 	<script type="text/javascript" src="js/js.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
-<!-- 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/bootstrap-table.min.css">
-	<link rel="stylesheet" href="css/bootstrap-table.css">
-	<link rel="stylesheet" href="css/fontawesome.min.css">
-	<link rel="stylesheet" href="css/all.css">
-	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/fontawesome.min.js"></script>
-    <script type="text/javascript" src="js/all.js"></script>
-    <script type="text/javascript" src="js/bootstrap-table.js"></script> -->
-	<!-- <script type="text/javascript" src="js/bootstrap-table.min.js"></script> -->
     <script type="text/javascript" src="js/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="js/qingjiadan.js"></script>
     <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
     <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
+    
 </head>
 <body>
 		<!-- 浏览请假申请单 -->
 <div class="container-fluid">
-		
+<div class="loading">
+	<div id="app">
+	<div class="text-wrapper">
+		<div class="text part1">
+			<div>
+				<span class="letter"><div class="character">L</div> <span></span></span>
+				<span class="letter"><div class="character">o</div> <span></span></span>
+				<span class="letter"><div class="character">a</div> <span></span></span>
+				<span class="letter"><div class="character">d</div> <span></span></span>
+				<span class="letter"><div class="character">i</div> <span></span></span>
+				<span class="letter"><div class="character">n</div> <span></span></span>
+				<span class="letter"><div class="character">g</div> <span></span></span>
+			</div>
+		</div>
+		<div class="how-to"><span>正在加载中，请您耐心等待...</span></div>
+	</div>
+</div>
+	</div>
 <div id="toolbar">
 <form class="form-inline">
   <div class="input-group mb-2 mr-sm-2">
@@ -245,6 +251,11 @@
 				window.location.href="deleteOneByeid.action?id="+id;
 				$("#jitijiatable").bootstrapTable('refresh')
 		})
+		document.onreadystatechange = function () {//即在加载的过程中执行下面的代码
+			if(document.readyState=="complete"){//complete加载完成
+				$(".loading").fadeOut();
+			}
+		}
 	})
 </script>
 </html>

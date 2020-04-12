@@ -32,12 +32,12 @@
 		delete from t_personqingjia where id = #{id}
 	</delete>
 	<!-- 查询集体假条信息 -->
-	<select id="selectJiTiJiaTiao" resultType="boot.pojo.JiTiJiaTiaoBean">
+	<select id="selectJiTiJiaTiao" resultType="boot.pojo.JiTiJiaTiaoBean" parameterType="Map">
 		select d.id,dep.`name` as "departname",d.totalday,d.reason,d.daytime,d.togo,e.phone,l.`name` as "leadername",d.status 
 		from t_departqingjia d,t_leader l,t_department dep,t_employee e 
-		where d.leaderid = l.id 
-		and dep.id = d.did and e.id = l.eid
 		<where>
+		d.leaderid = l.id 
+		and dep.id = d.did and e.id = l.eid
 			<if test="time != null and time != ''">
 				and daytime = #{time}
 			</if>
@@ -49,4 +49,42 @@
 	<select id="selectJiTiJiaTiaoCount" resultType="Integer">
 		select count(id) from t_departqingjia
 	</select>
+	<!-- 调用存储过程，向奖励表中存储数据 -->
+	<select id="addIntoJiaBanCount" statementType="CALLABLE">
+		call addintojiangli(#{monthstart,mode=IN},
+						 #{monthend,mode=IN})
+	</select>
+	<!-- 查询所受奖励人员的人数 -->
+	<select id="selectJiangLiInFo" resultType="boot.pojo.JiangLiInFoBean" parameterType="Map">
+		select * from t_empbuchang
+		<where>
+			<if test="month != vnull">
+				and month = #{month}
+			</if>
+			<if test="offset != null and limit != null">
+			limit #{offset},#{limit}
+		</if>
+		</where>
+	</select>
+	<!-- 查询所受奖励员工的总人数 -->
+	<select id="jiangLiTotalCount" resultType="Integer">
+		select count(id) from t_empbuchang
+	</select>
+	<!-- 根据id查询员工基础工资 -->
+	<select id="selectEmpBaseSalary" resultType="String">
+		select basesalary from t_employee where id = #{id}
+	</select>
+	<!-- 更新奖励发放状态 -->
+	<update id="updateJiangLiInFo">
+		update t_empbuchang <set>
+			<if test="status != null and status !=''">
+				status = #{status},
+			</if>
+			<if test="yingdejiangli != null and yingdejiangli != ''">
+				jiangli = #{yingdejiangli}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
 </mapper>

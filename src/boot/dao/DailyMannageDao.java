@@ -5,9 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import boot.pojo.JiTiJiaTiaoBean;
 import boot.pojo.JiaTiaoBean;
+import boot.pojo.JiangLiInFoBean;
 
 @Repository
 public interface DailyMannageDao {
@@ -23,4 +25,15 @@ public interface DailyMannageDao {
 		public Integer selectJiTiJiaTiaoCount();
 		//更新集体假条状态
 		public Integer updateJiTiJiaTiaoStatus(@Param("id") Integer id,@Param("status") String status);
+		//向加班表中存储数据
+		public void addIntoJiaBanCount(Map<String,Object> param);
+		//查询所受奖励员工的信息
+		public List<JiangLiInFoBean> selectJiangLiInFo(Map<String,Object> param);
+		//查询所受奖励员工的总数
+		public Integer jiangLiTotalCount();
+		//查询员工基础工资
+		public String selectEmpBaseSalary(Integer id);
+		//更新奖励状态信息
+		public int updateJiangLiInFo(@Param("id")Integer id,@Param("status")String status,@Param("yingdejiangli")String yingdejiangli);
+		
 }
