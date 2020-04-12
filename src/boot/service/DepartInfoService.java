@@ -10,7 +10,6 @@ import boot.pojo.DepartInfoBean;
 import boot.pojo.EmployeeBean;
 import boot.pojo.PostBean;
 
-@Service
 public interface DepartInfoService {
 	//根据条件查询部门信息 
 	Page<DepartInfoBean> selectDepByCon(Integer page,Integer rows,DepartInfoBean departInfoBean);

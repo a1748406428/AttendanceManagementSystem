@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import boot.pojo.KaoQinInfoBean;
 import boot.vo.KaoQinCountBean;
 
-@Service
 public interface KaoQinInfoService {
 	//根据ID查询每个部门的考勤情况
 	List<KaoQinCountBean> selectDepKaoQin(Integer did1,Integer did2,Integer did3,

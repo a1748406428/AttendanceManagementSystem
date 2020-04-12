@@ -5,7 +5,6 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Service
 public interface DailyMannageService {
 	//查看个人请假人数
 	public Map<String,Object> browseQingJiaTiao(Map<String,Object> param);

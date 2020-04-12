@@ -8,7 +8,6 @@ import boot.po.NamePwdBean;
 import boot.pojo.UserBean;
 import boot.vo.CityBean;
 import boot.vo.TownBean;
-@Service
 public interface UserService {
 	//≤È—Ø
 	UserBean selectByAll(String name);

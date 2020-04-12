@@ -15,6 +15,7 @@ import boot.pojo.JiangLiInFoBean;
 import boot.service.DailyMannageService;
 
 @Service
+@Transactional
 public class DailyMannageServiceImpl implements DailyMannageService{
 	@Autowired
 	private DailyMannageDao dailyMannageDao;
@@ -68,7 +69,6 @@ public class DailyMannageServiceImpl implements DailyMannageService{
 		return map;
 	}
 	@Override
-	@Transactional
 	public Map<String,Object> calculateAvgDailySal(Integer id,Integer jiabantianshu) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		String basesal =  dailyMannageDao.selectEmpBaseSalary(id);
