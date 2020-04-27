@@ -17,10 +17,12 @@ $(function() {
                 alert("汇总成功")
             }
         })
-        }		
-    )
+        })
     $("#jcbtn").click(function () {
-        var month = parseInt($("#month").val());
+    	var day = new Date($("#month").val());
+    	var year = day.getFullYear();
+    	var tempmonth = (day.getMonth()+1)<10?'0'+(day.getMonth()+1):day.getMonth()+1;
+    	var month = year+'/'+tempmonth;
         $("#jiangchengtable")
         .bootstrapTable('destroy')
         .bootstrapTable(

@@ -11,4 +11,5 @@ public class PaiBanGuanLiController {
 	public String toPaiBanGuanLi() {
 		return "paibanguanli";
 	}
+	
 }

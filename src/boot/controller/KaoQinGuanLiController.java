@@ -1,7 +1,9 @@
 package boot.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,7 +57,6 @@ public class KaoQinGuanLiController {
 		} catch (IOException e) {
 			System.out.println("数据转换失败");
 		}
-
 		return null;
 	}
 	//查询公司的总体考勤情况
@@ -93,6 +94,50 @@ public class KaoQinGuanLiController {
 		}
 		return null;
 	}
+	//更新考勤信息
+	@RequestMapping("gengxin.action")
+	public String upDateKaoQinInFo(@RequestBody KaoQinInfoBean kaoQinInfao) {
+		int row = kaoQinInfoService.updateAttedence(kaoQinInfao);
+		if(row > 0) {
+			return "更新成功";
+		}
+		return null;
+	}
+	@RequestMapping("kqzb.action")
+	public String selectKaoQinZongBiao() {
+		
+		return "kaoqinzongbiao";
+	}
+	@RequestMapping("scankaoqinzongbiao.action")
+	@ResponseBody
+	public Map<String,Object> scanKaoQinZongBiao(@RequestParam Integer offset,@RequestParam Integer limit,
+			@RequestParam String time,@RequestParam Integer departid,@RequestParam Integer postid){
+		Map<String,Object> param = new HashMap<String,Object>();
+		param.put("offset", offset);
+		param.put("limit", limit);
+		if(time.equals("NaN/NaN")) {
+			param.put("time", null);
+		}else {
+			param.put("time", time);
+		}
+		try {
+			if(!departid.equals(null)) {
+				param.put("departid", departid);
+			}
+		} catch (NullPointerException e) {
+			param.put("departid", null);
+		}
+		try {
+			if(!postid.equals(null)) {
+				param.put("postid", postid);
+			}
+		} catch (NullPointerException e) {
+			param.put("postid", null);
+		}
+		System.out.println(departid);
+		return kaoQinInfoService.selectKaoQinZongBiao(param);
+	}
+	
 	//得到数据进行JSON数据转换
 	public static String formatJson(KaoQinCountBean countBean1,KaoQinCountBean countBean2,
 			KaoQinCountBean countBean3,KaoQinCountBean countBean4,

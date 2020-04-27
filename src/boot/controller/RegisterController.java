@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import boot.pojo.UserBean;
 import boot.service.UserService;
@@ -50,30 +51,34 @@ public class RegisterController {
 
 	// 省市联动后台
 	@RequestMapping("/shengshi.action")
-	public void provinceCity(HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public List<CityBean> provinceCity(HttpServletRequest request, HttpServletResponse response) {
 		int pid = Integer.parseInt(request.getParameter("pId"));
 		List<CityBean> cityBean = userService.selectCityByPid(pid);
-		JSONArray jsonArray = JSONArray.fromObject(cityBean);
-		try {
-			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(jsonArray.toString());
-		} catch (IOException e) {
-			System.out.println("数组转换失败");
-		}
+//		JSONArray jsonArray = JSONArray.fromObject(cityBean);
+//		try {
+//			response.setContentType("text/html;charset=utf-8");
+//			response.getWriter().write(jsonArray.toString());
+//		} catch (IOException e) {
+//			System.out.println("数组转换失败");
+//		}
+		return cityBean;
 	}
 
 	// 市县联动后台
 	@RequestMapping("/shixian.action")
-	public void cityTown(HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public List<TownBean> cityTown(HttpServletRequest request, HttpServletResponse response) {
 		int cid = Integer.parseInt(request.getParameter("cId"));
 		List<TownBean> townBean = userService.selectTownByCid(cid);
-		JSONArray jsonArray = JSONArray.fromObject(townBean);
-		try {
-			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write(jsonArray.toString());
-		} catch (IOException e) {
-			System.out.println("数组转换失败");
-		}
+//		JSONArray jsonArray = JSONArray.fromObject(townBean);
+//		try {
+//			response.setContentType("text/html;charset=utf-8");
+//			response.getWriter().write(jsonArray.toString());
+//		} catch (IOException e) {
+//			System.out.println("数组转换失败");
+//		}
+		return townBean;
 	}
 	// 后台注册
 	@RequestMapping("/register.action")

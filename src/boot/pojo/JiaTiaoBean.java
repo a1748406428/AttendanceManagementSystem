@@ -9,12 +9,13 @@ public class JiaTiaoBean {
 	private String togo;
 	private String phone;
 	private Integer eid;
+	private Integer did;
 	private String status;
 	public JiaTiaoBean() {
 		super();
 	}
 	public JiaTiaoBean(Integer id, String name, String totalday, String reason, String daytime, String togo,
-			String phone, Integer eid, String status) {
+			String phone, Integer eid, Integer did, String status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -24,6 +25,7 @@ public class JiaTiaoBean {
 		this.togo = togo;
 		this.phone = phone;
 		this.eid = eid;
+		this.did = did;
 		this.status = status;
 	}
 	public Integer getId() {
@@ -74,11 +76,17 @@ public class JiaTiaoBean {
 	public void setEid(Integer eid) {
 		this.eid = eid;
 	}
+	public Integer getDid() {
+		return did;
+	}
+	public void setDid(Integer did) {
+		this.did = did;
+	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 }

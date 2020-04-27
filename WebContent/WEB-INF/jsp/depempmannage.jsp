@@ -102,9 +102,9 @@
     </div>
     <div class="btn-group">
     <input type="date" id="time" class="form-control">
-	<button id="chaxunmsg" type="button" class="btn btn-info form-control"><span class="fa fa-search">查询</span></button>
-	<button id="btn_edit" type="button" class="btn btn-info form-control"><span class="fa fa-edit">批量修改</span></button>
-	<button id="btn_delete" type="button" class="btn btn-danger form-control"><span class="fa fa-trash">批量删除</span></button>
+	<button id="chaxunmsg" type="button" class="btn btn-info "><span class="fa fa-search">查询</span></button>
+	<button id="btn_edit" type="button" class="btn btn-info "><span class="fa fa-edit">批量修改</span></button>
+	<button id="btn_delete" type="button" class="btn btn-danger "><span class="fa fa-trash">批量删除</span></button>
 	</div>
   </div>
 </form>

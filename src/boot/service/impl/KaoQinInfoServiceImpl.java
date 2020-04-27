@@ -1,11 +1,14 @@
 package boot.service.impl;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import boot.dao.KaoQinInfoDao;
 import boot.pojo.KaoQinInfoBean;
+import boot.pojo.KaoQinZongBiaoBean;
 import boot.service.KaoQinInfoService;
 import boot.vo.KaoQinCountBean;
 @Service
@@ -68,5 +71,23 @@ public class KaoQinInfoServiceImpl implements KaoQinInfoService {
 		}
 		return null;
 	}
-
+	//²éÑ¯¿¼ÇÚ×Ü±í
+	@Override
+	public Map<String,Object> selectKaoQinZongBiao(Map<String, Object> param) {
+		Map<String,Object> results = new HashMap<String,Object>();
+		List<KaoQinZongBiaoBean> data = kaoQinInfoDao.selectKaoQinInFo(param);
+		int total = kaoQinInfoDao.selectKaoQinInFoCount(param);
+		results.put("data", data);
+		results.put("total", total);
+		return results;
+	}
+	@Override
+	public Integer updateAttedence(KaoQinInfoBean kaoQinInfo) {
+		Integer rows = kaoQinInfoDao.updateAttdenceInFo(kaoQinInfo);
+		if(rows>0) {
+			return rows;
+		}
+		return 0;
+	}
+	
 }

@@ -1,9 +1,13 @@
 package boot.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import boot.pojo.KaoQinInfoBean;
+import boot.pojo.KaoQinZongBiaoBean;
 import boot.vo.KaoQinCountBean;
 
 @Repository
@@ -31,4 +35,11 @@ public interface KaoQinInfoDao {
 	//手动记录考勤数据
 	public Integer insertInToAttdence(KaoQinInfoBean kaoQinInfobean);
 	
+	//条件查询考勤表
+	public List<KaoQinZongBiaoBean> selectKaoQinInFo(Map<String,Object> param);
+	//查询总表结果集个数
+	public Integer selectKaoQinInFoCount(Map<String,Object> param);
+	
+	//更新个人的考勤信息
+	public Integer updateAttdenceInFo(KaoQinInfoBean kaoQinInfobean);
 }

@@ -19,4 +19,6 @@ public interface EmployeeDao {
 	int deleteEmpById(int id);
 	//根据id修改信息
 	int updateEmpById(EmployeeBean employeeBean);
+	//注册新员工
+	int addintoEmpTable(EmployeeBean employeeBean);
 }

@@ -23,12 +23,13 @@ $(function() {
 </script>
 <body>
 <div class="container-fluid">
-	<form action="selectdep.action" id="tijiao">
-		部门名称：<input type="text" name="name" value="${departPageBan.name}">
-		<button type="button" id="chaxun" class="btn btn-primary btn-sm">查询</button>
-		<button type="button" data-toggle="modal"  data-target="#insertDep" class="btn btn-primary btn-sm">添加部门</button>
+	<form action="selectdep.action" id="tijiao" class="form-inline">
+		
+		<label>部门名称：</label>
+		<input class="form-control" type="text" name="name" value="${departPageBan.name}">
+		<button type="button" id="chaxun" class="btn btn-primary">查询</button>
+		<button type="button" data-toggle="modal"  data-target="#insertDep" class="btn btn-primary">添加部门</button>
 	</form>
-
 	<table class="table table-condensed table-hover table-bordered" id="tab">
 		<thead>
 			<tr>

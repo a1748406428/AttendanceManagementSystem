@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.dao.GetEmpSelfInFoDao">
+	<select id="selectEmpSelfInFo" resultType="boot.pojo.EmployeeBean">
+		select e.name as 'name',e.id as 'id',d.`name` as 'depname', p.`name` as 'postname',
+		e.address as 'address',e.age,e.phone,e.education,e.entrytime,e.sex,e.basesalary,
+		TIMESTAMPDIFF(MONTH,e.entrytime,NOW()) as 'gongling',e.level,e.politicalstatus 
+		from t_employee e,t_department d,t_post p 
+		where e.departid = d.id and e.postid = p.id and e.gonghao = #{gonghao}
+	</select>
+	<select id="selectPersonNotice" resultType="boot.pojo.NoticeBean">
+		select * from t_publicnotice
+		<where>
+			<if test="content != null and content != ''">
+				and content = #{content}
+			</if>
+			<if test="daytime != null and daytime != ''">
+				and daytime = #{daytime}
+			</if>
+		</where>
+		order by str_to_date(daytime,'%Y/%m/%d') DESC
+	</select>
+	<select id="selectPersonPrivateNotice" resultType="boot.pojo.NoticeBean">
+		select * from t_privatenotice
+		<where>
+			gonghao = #{gonghao}
+			<if test="content != null and content != ''">
+				and content = #{content}
+			</if>
+			<if test="daytime != null and daytime != ''">
+				and daytime = #{daytime}
+			</if>
+		</where>
+		order by str_to_date(daytime,'%Y/%m/%d') DESC
+	</select>
+	<select id="selectEmpPersonSalary" resultType="boot.pojo.EmpSalaryBean">
+		select e.name,es.month,es.totalsalary,es.jiabangongzi,es.tax,es.endsalary 
+		from t_emptotalsalary es,t_employee e
+		where es.eid = e.id and e.gonghao = #{gonghao}
+	</select>
+</mapper>

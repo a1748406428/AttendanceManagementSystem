@@ -14,6 +14,10 @@ public class EmployeeBean {
 	private String depname;
 	private Integer departid;
 	private Integer postid;
+	private String postname;
+	private Integer gongling;
+	private String level;
+	private String politicalstatus;
 	private Integer start;//起始行
 	private Integer rows;//所取行数
 	public EmployeeBean() {
@@ -21,7 +25,8 @@ public class EmployeeBean {
 	}
 	public EmployeeBean(Integer id, String name, String gonghao, String education, String sex, Integer age,
 			String address, String phone, String basesalary, String entrytime, String depname, Integer departid,
-			Integer postid, Integer start, Integer rows) {
+			Integer postid, String postname, Integer gongling, String level, String politicalstatus, Integer start,
+			Integer rows) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -36,6 +41,10 @@ public class EmployeeBean {
 		this.depname = depname;
 		this.departid = departid;
 		this.postid = postid;
+		this.postname = postname;
+		this.gongling = gongling;
+		this.level = level;
+		this.politicalstatus = politicalstatus;
 		this.start = start;
 		this.rows = rows;
 	}
@@ -117,6 +126,30 @@ public class EmployeeBean {
 	public void setPostid(Integer postid) {
 		this.postid = postid;
 	}
+	public String getPostname() {
+		return postname;
+	}
+	public void setPostname(String postname) {
+		this.postname = postname;
+	}
+	public Integer getGongling() {
+		return gongling;
+	}
+	public void setGongling(Integer gongling) {
+		this.gongling = gongling;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	public String getPoliticalstatus() {
+		return politicalstatus;
+	}
+	public void setPoliticalstatus(String politicalstatus) {
+		this.politicalstatus = politicalstatus;
+	}
 	public Integer getStart() {
 		return start;
 	}
@@ -129,5 +162,6 @@ public class EmployeeBean {
 	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
+	
 	
 }

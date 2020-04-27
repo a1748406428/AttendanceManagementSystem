@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.dao.GetEmployeeNameDao">
+	<!-- 获取员工工号信息 -->
+	<select id="getEmployeePwd" resultType="boot.po.EmployeePwdBean">
+		select * from t_emplogininfo
+	</select>
+	<!-- 查询用户名和密码 -->
+	<select id="selectGonghaoAndPwd" resultType="boot.po.EmployeePwdBean">
+	select emppwd,empgonghao from t_emplogininfo 
+	where empgonghao = #{empgonghao}
+	and emppwd = #{emppwd}
+	</select>
+	<!-- 查询管理员账号和密码 -->
+	<select id="selectMannagePhoneAndPwd" resultType="boot.po.MannagerPwdBean">
+		select phone,password from t_user 
+		where phone = #{phone}
+		and password= #{password}
+	</select>
+</mapper>

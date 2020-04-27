@@ -6,30 +6,65 @@
 <meta charset="UTF-8">
 <title>手动记录</title>
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/sdjl.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/messages_zh.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
-		<div>
+		<div class="card">
+		<div class="card-header bg-info mb-3">
+			打卡异常，手动签到
+		</div>
 		<!-- 手动签到可能会面临一个极端问题是：如何判定该员工当天是否签到呢，即使签过到了
 		但也是存在误会，或者系统故障，使该员工已经签到，但是该员工觉得没签到
 		如果已经签过到了，岂不是重复了？
 			在后端判定一下该员工，是否已经签过到了，如果该员工的id在当天已经出现在签到表中那么则不插入数据，否则插入数据
 				--实现：在数据库中写一个存储函数在数据库中判定是否插入数据
 		 -->
-		<p><input type="text" placeholder="输入员ID" id="inputGongHao"></p>
-		<button type="button" id="scanisattd">查看是否签到</button>
-		<span id="isattd">haha</span>
+		
 		<!-- 利用ajax向后台添加数据 -->
-			
-				打卡日期:<input type="date" id="start"><br>
-				上班打卡时间:<input type="text" id="shangbantime"><br>
-				下班打卡时间:<input type="text" id="xiabantime"><br>
-				 是否缺勤:<input type="radio" name="queqin" id="shi " value="是">是
-				 <input type="radio" name="queqin" id="fou" value="否">否<br>
-				员工ID:<input type="text" id="empid"><br>
-				 所属岗位:<select name="gangwei" id="gangweiselect">
+			<div class="card-body" style="margin-left: 25%">
+			<form action="">
+			<div class="form-row">
+			<div class="col-md-4">
+				<label for="start">打卡日期:</label>
+				<input class="form-control" type="date" id="start">
+			</div>
+			<div class="col-md-4">
+				<label for="empid">员工ID:</label>
+				<input class="form-control" type="text" id="empid">
+				</div>
+				</div><br>
+				<div class="form-row">
+				<div class="col-md-4">
+				<label for="shangbantime">上班打卡时间:</label>
+				<input class="form-control" type="text" id="shangbantime" placeholder="格式如：08:00">
+				</div>
+				<div class="col-md-4">
+				<label for="xiabantime">下班打卡时间:</label>
+				<input class="form-control" type="text" id="xiabantime" placeholder="格式如：18:00"><br>
+				</div>
+				</div><br>
+				<div class="form-row">
+<div class=" col-md-2 custom-control custom-control-inline">
+	是否缺勤:</div>
+  <div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="shi" value="是" name="queqin" class="custom-control-input">
+  <label class="custom-control-label" for="shi">是</label>
+</div>
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="fou" name="queqin" value="否" class="custom-control-input">
+  <label class="custom-control-label" for="fou">否</label>
+</div>
+</div><br>
+				<div class="form-row">
+				<div class="col-md-4">	
+				 所属岗位:<select name="gangwei" id="gangweiselect" class="form-control">
+				 	<option value="">-请选择-</option>
 					<option value="1">Java研发</option>
 					<option value="2">前端开发</option>
 					<option value="3">大数据开发</option>
@@ -46,10 +81,13 @@
 					<option value="14">法务经理</option>
 					<option value="15">法务助理</option>
 				</select>
-			
-			<button type="button" id="jilu">提交</button>
-			<span id="callback"></span>
+				</div>
+			</div><br>
+			<button class="col-md-4 btn btn-outline-success" type="button" id="jilu">提交</button>
+			<button class="col-md-4 btn btn-outline-success" type="button" id="gengxin">更新</button>
+			</form>
 		</div>
+	</div>
 	</div>
 	
 </body>

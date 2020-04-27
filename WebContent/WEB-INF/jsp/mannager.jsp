@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Home</title>
+<title>微人事</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -32,11 +32,12 @@
 <link rel="stylesheet" href="css/custom.css">
 <!-- Favicon-->
 <link rel="shortcut icon" href="image/favicon.ico">
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <title>管理员</title>
+<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
 </head>
 
-<body>
-	当前用户：${USER_SESSION}
+<body onload="showTime()">
 	<nav class="side-navbar">
 		<div class="side-navbar-wrapper">
 			<!-- Sidebar Header    -->
@@ -46,13 +47,13 @@
 				<div class="sidenav-header-inner text-center">
 					<img src="image/avatar-7.jpg" alt="person"
 						class="img-fluid rounded-circle">
-					<h2 class="h5">许梦园</h2>
+					<h2 class="h5">${GONG_HAO}</h2>
 					<span>管理员</span>
 				</div>
 				<!-- Small Brand information, appears on minimized sidebar-->
 				<div class="sidenav-header-logo">
-					<a href="index.html" class="brand-small text-center"> <strong>B</strong><strong
-						class="text-primary">D</strong></a>
+					<a href="index.html" class="brand-small text-center"> <strong>H</strong><strong
+						class="text-primary">R</strong></a>
 				</div>
 			</div>
 			<!-- Sidebar Navigation Menus-->
@@ -63,16 +64,16 @@
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>员工管理
 					</a>
 						<ul id="exampledropdownDropdown0" class="collapse list-unstyled ">
-							<li id="register" src=""><a href="javascript:void(0)"><span >员工注册</span></a></li>
-							<li id="yuangong" src="toList.action"><a href="javascript:void(0)"><span >员工信息详情</span></a></li>
+							<li id="register" src="empreg.action"><a href="javascript:void(0)"><span >员工注册</span></a></li>
+							<li id="yuangong" src="toList.action"><a href="javascript:void(0)"><span >员工信息</span></a></li>
 						</ul></li>
 					<li><a href="#exampledropdownDropdown1" aria-expanded="false"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>考勤管理
 					</a>
 						<ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
 							<li id="kaoqinqingkuang" src="kqqk.action"><a href="javascript:void(0)"><span >考勤实时分布图</span></a></li>
-							<li id="shoudongtianjia" src="sdtj.action"><a href="javascript:void(0)"><span >手动添加考勤</span></a></li>
-							<li id="kaoqinzongbiao" src="kqzb.action"><a href="javascript:void(0)"><span >考勤总表</span></a></li>
+							<li id="kaoqinzongbiao" src="kqzb.action"><a href="javascript:void(0)"><span >考勤信息总表</span></a></li>
+							<li id="shoudongtianjia" src="sdtj.action"><a href="javascript:void(0)"><span >手动录入考勤</span></a></li>
 						</ul></li>
 					<li><a href="#exampledropdownDropdown2" aria-expanded="false"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>部门管理
@@ -89,10 +90,10 @@
 						<ul id="exampledropdownDropdown4" class="collapse list-unstyled ">
 							<li id="qingjiashenqing" src="qjsq.action"><a href="javascript:void(0)"><span >请假申请单</span></a></li>
 							<li id="tiaoxiuguanli" src="txgl.action"><a href="javascript:void(0)"><span >调补休管理</span></a></li>
-							<li id="buchangjiahua" src="bcjh.action"><a href="javascript:void(0)"><span >补偿计划</span></a></li>
-							<li id="tongzhiguangbo" src="tzgb.action"><a href="javascript:void(0)"><span >通知广播</span></a></li>
+							<li id="buchangjiahua" src="bcjh.action"><a href="javascript:void(0)"><span >奖惩管理</span></a></li>
+							<li data-toggle="modal"  data-target="#broadmodal"><a href="javascript:void(0)"><span >通知广播</span></a></li>
 						</ul></li>
-					<li id="paibanguanli" src="pbgl.action"><a href="javascript:void(0)"><span><i class="icon-interface-windows"></i>排班管理</span></a></li>
+					<li id="paibanguanli" src="pbgl.action"><a href="javascript:void(0)"><span><i class="icon-interface-windows"></i>薪资管理</span></a></li>
 					</a></li>
 				</ul>
 			</div>
@@ -133,120 +134,25 @@
 						</div>
 						<ul
 							class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+							<li><span id="time"></span></li>
 							<!-- Notifications dropdown-->
 							<li class="nav-item dropdown"><a id="notifications"
 								rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false" class="nav-link"><i
-									class="fa fa-bell"></i><span class="badge badge-warning">12</span></a>
+								aria-haspopup="true" aria-expanded="false" class="nav-link">
+								<i class="fa fa-bell"></i><span class="badge badge-warning" id="tx"></span></a>
 								<ul aria-labelledby="notifications" class="dropdown-menu">
 									<li><a rel="nofollow" href="#" class="dropdown-item">
 											<div class="notification d-flex justify-content-between">
 												<div class="notification-content">
-													<i class="fa fa-envelope"></i>You have 6 new messages
-												</div>
-												<div class="notification-time">
-													<small>4 minutes ago</small>
 												</div>
 											</div>
 									</a></li>
-									<li><a rel="nofollow" href="#" class="dropdown-item">
-											<div class="notification d-flex justify-content-between">
-												<div class="notification-content">
-													<i class="fa fa-twitter"></i>You have 2 followers
-												</div>
-												<div class="notification-time">
-													<small>4 minutes ago</small>
-												</div>
-											</div>
-									</a></li>
-									<li><a rel="nofollow" href="#" class="dropdown-item">
-											<div class="notification d-flex justify-content-between">
-												<div class="notification-content">
-													<i class="fa fa-upload"></i>Server Rebooted
-												</div>
-												<div class="notification-time">
-													<small>4 minutes ago</small>
-												</div>
-											</div>
-									</a></li>
-									<li><a rel="nofollow" href="#" class="dropdown-item">
-											<div class="notification d-flex justify-content-between">
-												<div class="notification-content">
-													<i class="fa fa-twitter"></i>You have 2 followers
-												</div>
-												<div class="notification-time">
-													<small>10 minutes ago</small>
-												</div>
-											</div>
-									</a></li>
-									<li><a rel="nofollow" href="#"
+									<!-- <li><a rel="nofollow" href="#"
 										class="dropdown-item all-notifications text-center"> <strong>
 												<i class="fa fa-bell"></i>view all notifications
-										</strong></a></li>
+										</strong></a></li> -->
 								</ul></li>
-							<!-- Messages dropdown-->
-							<li class="nav-item dropdown"><a id="messages"
-								rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false" class="nav-link"><i
-									class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
-								<ul aria-labelledby="notifications" class="dropdown-menu">
-									<li><a rel="nofollow" href="#"
-										class="dropdown-item d-flex">
-											<div class="msg-profile">
-												<img src="image/avatar-1.jpg" alt="..."
-													class="img-fluid rounded-circle">
-											</div>
-											<div class="msg-body">
-												<h3 class="h5">Jason Doe</h3>
-												<span>sent you a direct message</span><small>3 days
-													ago at 7:58 pm - 10.06.2019</small>
-											</div>
-									</a></li>
-									<li><a rel="nofollow" href="#"
-										class="dropdown-item d-flex">
-											<div class="msg-profile">
-												<img src="image/avatar-2.jpg" alt="..."
-													class="img-fluid rounded-circle">
-											</div>
-											<div class="msg-body">
-												<h3 class="h5">Frank Williams</h3>
-												<span>sent you a direct message</span><small>3 days
-													ago at 7:58 pm - 10.06.2019</small>
-											</div>
-									</a></li>
-									<li><a rel="nofollow" href="#"
-										class="dropdown-item d-flex">
-											<div class="msg-profile">
-												<img src="image/avatar-3.jpg" alt="..."
-													class="img-fluid rounded-circle">
-											</div>
-											<div class="msg-body">
-												<h3 class="h5">Ashley Wood</h3>
-												<span>sent you a direct message</span><small>3 days
-													ago at 7:58 pm - 10.06.2019</small>
-											</div>
-									</a></li>
-									<li><a rel="nofollow" href="#"
-										class="dropdown-item all-notifications text-center"> <strong>
-												<i class="fa fa-envelope"></i>Read all messages
-										</strong></a></li>
-								</ul></li>
-							<!-- Languages dropdown    -->
-							<li class="nav-item dropdown"><a id="languages"
-								rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"
-								class="nav-link language dropdown-toggle"><img
-									src="image/flags/16/GB.png" alt="English"><span
-									class="d-none d-sm-inline-block">简体中文</span></a>
-								<ul aria-labelledby="languages" class="dropdown-menu">
-									<li><a rel="nofollow" href="#" class="dropdown-item">
-											<img src="image/flags/16/DE.png" alt="English" class="mr-2"><span>中文</span>
-									</a></li>
-									<li><a rel="nofollow" href="#" class="dropdown-item">
-											<img src="image/flags/16/FR.png" alt="English" class="mr-2"><span>French
-										</span>
-									</a></li>
-								</ul></li>
+							
 							<!-- Log out-->
 							<li class="nav-item"><a href="login.html"
 								class="nav-link logout"> <span
@@ -258,24 +164,56 @@
 				</div>
 			</nav>
 		</header>
-
 		<!-- 添加iframe src内容动态添加-->
 		<div class="embed-responsive embed-responsive-21by9">
 			<iframe name="manage" id="mframe" class="embed-responsive-item" src=""></iframe>
 		 </div>
 	</div>
 	<!-- JavaScript files-->
-	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
 	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
 	<script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
 	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+	
 	<script
 		src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- Main File-->
 	<script src="js/front.js"></script>
-	
+	<!-- 广播通知模态框 -->
+<div class="modal fade" id="broadmodal" tabindex = "-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">通知</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div>
+			<div class="modal-body">
+	<form class="bs-example bs-example-form" role="form">
+      <div class="input-group">
+      	 <span class="input-group-addon">通知对象:</span>
+         <input type="text" class="form-control" value="everyone" id="username">
+      </div>
+      <br>
+      <div class="input-group">
+         通知内容:<textarea type="text" rows="10" class="form-control" placeholder="通知内容" id="inputMsg"></textarea>
+         <span class="input-group-addon"></span>
+      </div>
+      <br>
+      <div class="input-group">
+        发件人:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" placeholder="发件人" id="senduser">
+         <span class="input-group-addon"></span>
+      </div>
+   </form>
+			</div>
+            <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal">关闭 </button>
+            <button type="button" onclick="doSendUser()" class="btn btn-primary btn-sm" data-dismiss="modal">发送</button>
+         </div>
+			
+		</div>
+	</div>
+</div>
 </body>
 <script type="text/javascript">
 	$(function() {
@@ -305,4 +243,95 @@
 		}
 	})
 	</script>
+	<script type="text/javascript">
+	var websocket = null;
+	if('WebSocket' in window){
+		websocket = new WebSocket("ws://localhost:8080/AttendanceManagementSystem/myHandler.action");
+	}
+	websocket.onopen = onOpen;
+	websocket.onmessage = onMessage;
+	websocket.onerror = onError;
+	websocket.onclose = onClose;
+	var count = 0;
+	function onOpen(result){
+
+	}
+	function onMessage(result) {
+		if(result.data!=null){
+			count = count+1;
+       	 	$("#tx").text(count);
+       	 	$(".notification-content").append(result.data+'<br>');
+		}
+    }
+    function onError(result) {
+        alert("通信发生错误时触发:"+result.data);
+    }
+    function onClose(result) {
+    	$("#duankai").html("已断开")
+    }
+    function doSendUser() {
+    	 if (websocket.readyState == websocket.OPEN) {
+             var msg = document.getElementById("inputMsg").value;
+             var sendtouser = document.getElementById("username").value;
+             var senduser = document.getElementById("senduser").value;
+             websocket.send(sendtouser+"|"+msg+"|"+senduser);//调用后台handleTextMessage方法
+             alert("发送成功！")
+         } else {
+             alert("连接失败!");
+         }
+	}
+    window.close=function websocketClose()
+    {
+        websocket.onclose();
+    }
+</script>
+<script type="text/javascript">
+
+window.setInterval('showTime()',1000)
+		function showTime()
+		{
+		var enabled = 0; 
+		today = new Date();
+		var day; 
+		var date;
+		if(today.getDay()==0) day = "星期日"
+		if(today.getDay()==1) day = "星期一"
+		if(today.getDay()==2) day = "星期二"
+		if(today.getDay()==3) day = "星期三"
+		if(today.getDay()==4) day = "星期四"
+		if(today.getDay()==5) day = "星期五"
+		if(today.getDay()==6) day = "星期六"
+		var month = (today.getMonth() + 1 )<10?'0'+(today.getMonth() + 1 ):(today.getMonth() + 1 );
+		var hour = today.getHours()<10?'0'+today.getHours():today.getHours();
+		var seconds = today.getSeconds()<10?'0'+today.getSeconds():today.getSeconds();
+		var min = today.getMinutes()<10?'0'+today.getMinutes():today.getMinutes();
+		date = (today.getFullYear()) + "年" + month + "月" + today.getDate() + "日 " + 
+		day+hour+":"+min+":"+seconds;
+		$("#time").html(date).css('color','white')
+}
+</script>
+<script type="text/javascript">
+$(function () {
+ 	$('body').css('overflow','auto');
+ 	/*$('ele').niceScroll({ ...});
+	$(ele).css('overflow','hidden'); */
+	$("body").niceScroll({
+	    cursorcolor: "rgb(110, 110, 109)", //滚动条的颜色   
+	    cursoropacitymax: 1, //滚动条的透明度，从0-1   
+	    touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备   
+	    cursorwidth: "8px", //滚动条的宽度   
+	    cursorborder: "0", // 游标边框css定义    
+	    cursorborderradius: "5px", //以像素为光标边界半径  圆角   
+	    autohidemode: false, //是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条   
+	    zindex: "auto", //给滚动条设置z-index值    
+	    railpadding: {
+	        top: 0,
+	        right: -4,
+	        left: 0,
+	        bottom: 0
+	    }, //滚动条的位置
+	});
+})
+
+</script>
 </html>

@@ -76,4 +76,8 @@
 		</set>
 		where id = #{id}
 	</update>
+	<insert id="addintoEmpTable" keyProperty="id" useGeneratedKeys="true">
+		insert into t_employee (name,gonghao,education,sex,age,address,phone,basesalary,entrytime,departid,postid,level,politicalstatus)
+		values(#{name},#{gonghao},#{education},#{sex},#{age},#{address},#{phone},#{basesalary},#{entrytime},#{departid},#{postid},#{level},#{politicalstatus})
+	</insert>
 </mapper>

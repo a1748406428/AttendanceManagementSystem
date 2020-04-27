@@ -16,8 +16,8 @@
     <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="js/qingjiadan.js"></script>
-    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-    <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
     
 </head>
 <body>
@@ -54,7 +54,7 @@
 			<option value="person">个人假条</option>
 			<option value="jiti">集体假条</option>
 		</select>
-	<button id="chaxunjiatiao" type="button" class="btn btn-info form-control"><span class="fa fa-search">查询</span></button>
+	<button id="chaxunjiatiao" type="button" class="btn btn-info form-control"><span class="fa fa-search">浏览假条</span></button>
 	</div>
   </div>
 </form>

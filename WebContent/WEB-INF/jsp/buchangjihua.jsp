@@ -29,8 +29,12 @@
     <div class="btn-group">
     <input type="date" id="monthstart">--
 	<input type="date" id="monthend">
-	<button id="chaxunmsg" type="button" id="hzbtn" class="btn btn-info form-control"><span class="fa ">汇总奖惩</span></button>
-	<select id="month" class="custom-select">
+	<button type="button" id="hzbtn" class="btn btn-info "><span>汇总奖惩</span></button>
+	<div class="input-group-prepend">
+      <div class="input-group-text">选择月份:</div>
+    </div>
+	<input type="month" id="month">
+	<!-- <select id="month" class="custom-select">
 		<option value="">-选择月份-</option>
 		<option value="1">一月</option>
 		<option value="2">二月</option>
@@ -44,7 +48,7 @@
 		<option value="10">十月</option>
 		<option value="11">十一月</option>
 		<option value="12">十二月</option>
-	</select>
+	</select> -->
 	<button  type="button" class="btn btn-info form-control" id="jcbtn"><span class="fa fa-search">查询奖惩情况</span></button>
 	</div>
   </div>
@@ -82,7 +86,7 @@
    	<form class="bs-example bs-example-form" role="form">
       <div class="input-group input-group">
       <span class="input-group-addon">平均日薪:</span>
-        <input type="text" class="form-control" id="pingjunrixin" readonly="readonly">
+        <input type="text" class="form-control" id="pingjunrixin" readonly="readonly" placeholder="单击获取值">
       </div>
       <br>
       <div class="input-group">
@@ -126,11 +130,32 @@
                                             <button type="button" class="btn btn-default"
                                                 data-dismiss="modal">取消</button>
                                             <button type="button" class="btn btn-primary"
-                                                id="deletebtn">确认</button>
+                                              data-dismiss="modal"  id="deletebtn">确认</button>
                                         </div>
                                     </div>
                                 </div>
 		 </div>
 		</div>
 </body>
+<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+<script type="text/javascript">
+$(function () {
+	$("body").niceScroll({
+	    cursorcolor: "rgb(110, 110, 109)", //滚动条的颜色   
+	    cursoropacitymax: 1, //滚动条的透明度，从0-1   
+	    touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备   
+	    cursorwidth: "8px", //滚动条的宽度   
+	    cursorborder: "0", // 游标边框css定义    
+	    cursorborderradius: "5px", //以像素为光标边界半径  圆角   
+	    autohidemode: false, //是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条   
+	    zindex: "auto", //给滚动条设置z-index值    
+	    railpadding: {
+	        top: 0,
+	        right: -4,
+	        left: 0,
+	        bottom: 0
+	    }, //滚动条的位置
+	});
+})
+</script>
 </html>

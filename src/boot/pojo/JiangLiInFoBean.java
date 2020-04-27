@@ -7,21 +7,21 @@ public class JiangLiInFoBean {
 	private Integer totalday;
 	private String jiangli;
 	private String status;
-	private Integer month;
+	private String month;
 	private Integer eid;
 	public JiangLiInFoBean() {
 		super();
 	}
-	public JiangLiInFoBean(Integer id, String ename, String reason, Integer totalday, String jiangli, Integer month,
-			String status, Integer eid) {
+	public JiangLiInFoBean(Integer id, String ename, String reason, Integer totalday, String jiangli, String status,
+			String month, Integer eid) {
 		super();
 		this.id = id;
 		this.ename = ename;
 		this.reason = reason;
 		this.totalday = totalday;
 		this.jiangli = jiangli;
-		this.month = month;
 		this.status = status;
+		this.month = month;
 		this.eid = eid;
 	}
 	public Integer getId() {
@@ -54,17 +54,17 @@ public class JiangLiInFoBean {
 	public void setJiangli(String jiangli) {
 		this.jiangli = jiangli;
 	}
-	public Integer getMonth() {
-		return month;
-	}
-	public void setMonth(Integer month) {
-		this.month = month;
-	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
 	}
 	public Integer getEid() {
 		return eid;

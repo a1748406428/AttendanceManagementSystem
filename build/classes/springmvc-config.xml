@@ -22,6 +22,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	<!-- 配置扫描器 -->
 	<context:component-scan base-package="boot.controller"></context:component-scan>
+	<context:component-scan base-package="boot.websocket"></context:component-scan>
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven/>
 	<!-- 配置视图解析器 -->

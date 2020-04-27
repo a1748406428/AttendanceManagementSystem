@@ -15,11 +15,11 @@
 		</if>
 	</select>
 	<!-- 查看请假总条数 -->
-	<select id="selectPersonalJiaTiaoCount" resultType="Integer">
+	<select id="selectPersonalJiaTiaoCount" resultType="Integer" parameterType="Map">
 		select count(id) from t_personqingjia
 		<where>
 			<if test="time != null and time != ''">
-				and time = #{time}
+				and daytime = #{time}
 			</if>
 		</where>
 	</select>
@@ -46,8 +46,11 @@
 			limit #{offset},#{limit}
 		</if>
 	</select>
-	<select id="selectJiTiJiaTiaoCount" resultType="Integer">
+	<select id="selectJiTiJiaTiaoCount" resultType="Integer" parameterType="Map">
 		select count(id) from t_departqingjia
+		<if test="time != null and time != ''">
+				and daytime = #{time}
+			</if>
 	</select>
 	<!-- 调用存储过程，向奖励表中存储数据 -->
 	<select id="addIntoJiaBanCount" statementType="CALLABLE">
@@ -58,7 +61,7 @@
 	<select id="selectJiangLiInFo" resultType="boot.pojo.JiangLiInFoBean" parameterType="Map">
 		select * from t_empbuchang
 		<where>
-			<if test="month != vnull">
+			<if test="month != null">
 				and month = #{month}
 			</if>
 			<if test="offset != null and limit != null">

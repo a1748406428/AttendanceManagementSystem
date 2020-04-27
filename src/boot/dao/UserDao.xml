@@ -6,10 +6,10 @@
 	</select>
 	<!-- 根据pid查询市 -->
 	<select id="selectCityNameByPid" parameterType="int" resultType="boot.vo.CityBean">
-		select t_city.cid,t_city.cname,province.pid
-		from t_city,province 
-		where t_city.pid=province.pid
-		and province.pid = #{pid}
+		select t_city.cid,t_city.cname,t_province.pid
+		from t_city,t_province 
+		where t_city.pid=t_province.pid
+		and t_province.pid = #{pid}
 	</select>
 	<!-- 根据cid查询区县 -->
 	<select id="selectTownNameByCid" parameterType="int" resultType="boot.vo.TownBean">
@@ -17,9 +17,9 @@
 		where t_city.cid=t_town.cid 
 		and t_city.cid = #{cid}
 	</select>
-	<select id="selectByNamePwd" resultType="boot.po.NamePwdBean">
+<!-- 	<select id="selectByNamePwd" resultType="boot.po.NamePwdBean">
 		SELECT name,password FROM `t_user` where name = #{name} and `password`= #{password}
-	</select>
+	</select> -->
 	<!-- 注册用户 -->
 	<insert id="insertUser" parameterType="boot.pojo.UserBean" keyProperty="id" useGeneratedKeys="true">
 		insert into t_user(name,password,sex,phone,address)

@@ -59,7 +59,14 @@ public class EmployeeRegisterController {
 		employeeService.deleteById(id);
 		return "listemp";
 	}
-
+	@RequestMapping("registerEmp.action")
+	public String addIntoEmpTable(@RequestBody EmployeeBean employeeBean) {
+		int row = employeeService.insertNewEmp(employeeBean);
+		if(row>0) {
+			return "listemp";			
+		}
+		return "listemp";
+	}
 	// 根据ID号修改信息
 	@RequestMapping("/updateEmpById.action")
 	public String updateEmpById(@RequestBody EmployeeBean employeeBean, HttpServletResponse response, Model model) {

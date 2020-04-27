@@ -1,7 +1,10 @@
 package boot.service;
 
 import java.util.List;
+import java.util.Map;
+
 import boot.pojo.KaoQinInfoBean;
+import boot.pojo.KaoQinZongBiaoBean;
 import boot.vo.KaoQinCountBean;
 
 public interface KaoQinInfoService {
@@ -13,4 +16,8 @@ public interface KaoQinInfoService {
 	KaoQinCountBean selectCopKaoQin(String startTime, String endTime);
 	//添加手动开考勤
 	Integer insertIntoAttdence(KaoQinInfoBean kaoQinInfo);
+	//更新考勤信息
+	Integer updateAttedence(KaoQinInfoBean kaoQinInfo);
+	//查看考勤总表的内容
+	public Map<String,Object> selectKaoQinZongBiao(Map<String,Object>param);
 }

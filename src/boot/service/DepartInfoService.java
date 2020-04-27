@@ -27,4 +27,6 @@ public interface DepartInfoService {
 	public Integer updateEmpDepPostById(EmployeeBean employeeBean);
 	//岗位部门联动效果
 	public List<PostBean> dynamicDepAndPost(Integer did);
+	//计算工号
+	public String calcullateGongHao(Integer did);
 }

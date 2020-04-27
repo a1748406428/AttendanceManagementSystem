@@ -36,4 +36,6 @@ public interface DepartInfoDao {
 	public Integer updateEmpDepPostById(EmployeeBean employeeBean);
 	//实现部门联动效果
 	public List<PostBean> dynamicDepAndPost(Integer did);
+	//查询部门工号
+	public List<String> selectGongHao(@Param("did")Integer did);
 }

@@ -1,7 +1,7 @@
 package boot.service;
 
 import java.util.List;
-import boot.po.NamePwdBean;
+import boot.po.MannagerPwdBean;
 import boot.pojo.UserBean;
 import boot.vo.CityBean;
 import boot.vo.TownBean;
@@ -19,5 +19,5 @@ public interface UserService {
 	//根据CID查询市返回List
 	List<TownBean> selectTownByCid(int cid); 
 	//查询名字和密码
-	boolean selectNamePwd(NamePwdBean namePwdBean);
+	boolean selectNamePwd(MannagerPwdBean namePwdBean);
 }

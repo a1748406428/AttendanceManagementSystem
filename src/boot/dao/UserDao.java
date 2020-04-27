@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import boot.po.NamePwdBean;
+import boot.po.MannagerPwdBean;
 import boot.pojo.UserBean;
 import boot.vo.CityBean;
 import boot.vo.TownBean;
 
 /**
- * @author 许梦园
+ * @author ZXY
  *
  */
 @Repository
@@ -30,5 +30,5 @@ public interface UserDao {
 	//根据是ID查询区县
 	List<TownBean> selectTownNameByCid(@RequestParam("cid") int id);
 	//查询数据库中的姓名和密码
-	NamePwdBean selectByNamePwd(NamePwdBean namePwdBean);
+//	MannagerPwdBean selectByNamePwd(MannagerPwdBean namePwdBean);
 }

@@ -23,7 +23,7 @@ public class DailyMannageServiceImpl implements DailyMannageService{
 	public Map<String, Object> browseQingJiaTiao(Map<String, Object> param) {
 		Map<String,Object> result = new HashMap<String, Object>();
 		List<JiaTiaoBean> results = dailyMannageDao.selectPersonalQingjia(param);
-		Integer totalCount = dailyMannageDao.selectPersonalJiaTiaoCount();
+		Integer totalCount = dailyMannageDao.selectPersonalJiaTiaoCount(param);
 		result.put("data", results);
 		result.put("total", totalCount);
 		return result;
@@ -41,7 +41,7 @@ public class DailyMannageServiceImpl implements DailyMannageService{
 	public Map<String, Object> browseJiTiJiaTiao(Map<String, Object> param) {
 		Map<String,Object> result = new HashMap<String, Object>();
 		List<JiTiJiaTiaoBean> results = dailyMannageDao.selectJiTiJiaTiao(param);
-		Integer totalCount = dailyMannageDao.selectJiTiJiaTiaoCount();
+		Integer totalCount = dailyMannageDao.selectJiTiJiaTiaoCount(param);
 		result.put("data", results);
 		result.put("total", totalCount);
 		return result;

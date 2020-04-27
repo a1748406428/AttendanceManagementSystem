@@ -107,11 +107,12 @@ public class DailyManagementController {
 	//查看答当月奖惩情况
 	@RequestMapping("selectjiangcheng.action")
 	@ResponseBody
-	public Map<String, Object> browseJiangCheng(@RequestParam Integer offset,@RequestParam Integer limit,@RequestParam Integer month) {
+	public Map<String, Object> browseJiangCheng(@RequestParam Integer offset,@RequestParam Integer limit,@RequestParam String month) {
 		Map<String,Object> param = new HashMap<String,Object>();
 		param.put("offset", offset);
 		param.put("limit", limit);
 		param.put("month", month);
+		System.out.println(month);
 		return dailyMannageService.selectJiangLiInFo(param);
 	}
 	//查询平均薪资并计算奖励多少钱

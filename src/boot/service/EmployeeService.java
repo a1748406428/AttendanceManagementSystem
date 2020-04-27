@@ -26,4 +26,7 @@ public interface EmployeeService {
 	
 	//
 	public Page<EmployeeBean> findEmp(Integer page,Integer rows,EmployeeBean employeeBean);
+	
+	//×¢²áĞÂÔ±¹¤
+	public int insertNewEmp(EmployeeBean employeeBean);
 }

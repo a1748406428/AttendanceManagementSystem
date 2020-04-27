@@ -1,0 +1,800 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "微软雅黑";
+	font-size: 15px;
+}
+
+.top {
+	width: 100%;
+	/*background: #ED5564;*/
+	background: #4778C7;
+	padding: 10px 60px;
+	box-sizing: border-box;
+	color: white;
+}
+
+.logo-img {
+	height: 35px;
+}
+
+.logo-text {
+	vertical-align: super;
+	margin-left: 15px;
+	font-size: 20px;
+}
+
+.top-right {
+	float: right;
+}
+
+.top-right img {
+	vertical-align: middle;
+}
+
+.top-right-list {
+	float: left;
+	line-height: 35px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.erji-text {
+	vertical-align: super;
+}
+
+.navs {
+	width: 100%;
+	height: 35px;
+	padding-left: 25%;
+	padding-right: 60px;
+	box-sizing: border-box;
+	background: lavenderblush;
+	font-size: 15px;
+}
+
+.navs-lists {
+	float: left;
+}
+
+.navs-lists a {
+	display: inline-block;
+	width: 100%;
+	color: black;
+	text-decoration: none;
+}
+
+.navs-lists a:hover {
+	color: #4778C7;
+}
+
+.navs-sz {
+	float: right;
+	line-height: 35px;
+}
+
+.clear {
+	clear: both;
+}
+
+.list {
+	float: left;
+	margin-right: 15px;
+	width: 100px;
+	text-align: center;
+	/*border: 1px solid red;*/
+	border: 1px solid #34AEDF;
+	border-bottom: none;
+	margin-top: 10px;
+	line-height: 24px;
+	cursor: pointer;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.go-back-img {
+	cursor: pointer;
+	color: #34AEDF;
+}
+
+.selected-list {
+	color: white !important;
+	background: #34AEDF;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.fenge {
+	width: 100%;
+	height: 5px;
+	/*background: #ED5564;*/
+	background: #4778C7;
+}
+
+/*.left-nav {
+	width: 180px;
+	position: fixed;
+	background: white;
+	border-right: 1px solid gainsboro;
+	padding-top: 2px;
+	box-sizing: border-box;
+}*/
+.left-nav {
+	float: left;
+	width: 10%;
+	background: white;
+	border-right: 1px solid gainsboro;
+	padding-top: 2px;
+	box-sizing: border-box;
+}
+
+.left-nav .title:hover {
+	color:darkblue;
+}
+.left-nav .title{
+	padding-left: 4%;
+	box-sizing: border-box;
+}
+
+/*.content {
+	position: absolute;
+	left: 180px;
+	background: #F5F9FC;
+	overflow: auto;
+	padding: 0 20px;
+	box-sizing: content-box;
+}*/
+.content {
+	/* float: left; */
+	width: 100%;
+	background: #F5F9FC;
+	overflow: auto;
+	padding: 20px 20px;
+	box-sizing: border-box;
+}
+
+.one-nav {
+/*	padding-left: 25px;
+	box-sizing: border-box;*/
+	line-height: 40px;
+	font-size: 15px;
+	cursor: pointer;
+	position: relative;
+	-webkit-transition: all 0.8s ease;
+	-o-transition: all 0.8s ease;
+	transition: all 0.8s ease;
+}
+
+.two-navs {
+	padding-left: 40px;
+	box-sizing: border-box;
+	display: none;
+}
+.two-nav a:hover{
+	color:darkblue;
+}
+
+.left-nav img {
+	vertical-align: sub;
+}
+
+.jt {
+	position: absolute;
+	right: 10px;
+	top: 12px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+.xuanzhuan-jt {
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg)
+}
+
+.selected-one-nav {
+	background: cornflowerblue;
+	color: white;
+}
+
+.lvcolor {
+	color: black !important;
+}
+
+.top-info {
+	padding: 15px;
+	border-bottom: 1px solid lightgray;
+	box-sizing: border-box;
+}
+
+.two-nav-a {
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+	color: white;
+}
+
+
+/*修改弹窗*/
+
+#edit {
+	margin-top: 10px;
+	padding-left: 42px;
+}
+
+.form-group-name {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	font-size: 14px;
+}
+
+.layui-layer-title {
+	/*background: #ED5564 !important;*/
+	background: #4778C7 !important;
+	color: white !important;
+}
+
+.layui-layer-btn a,
+.layui-layer-btn .layui-layer-btn0 {
+	/*border-color: #ED5564 !important;
+	background-color: #ED5564 !important;*/
+	border-color: #4778C7 !important;
+	background-color: #4778C7 !important;
+	color: white !important;
+}
+
+.form-group-input {
+	width: 200px;
+	height: 30px;
+	border-radius: 4px;
+	padding-left: 5px;
+	box-sizing: border-box;
+	border: 1px solid gainsboro;
+}
+
+.form-group-input:focus {
+	outline: none;
+	border: 1px solid dimgray;
+	box-shadow: 0 0 10px dimgray;
+}
+
+.form-group textarea {
+	width: 200px;
+	height: 50px;
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+}
+
+textarea {
+	resize: none;
+}
+
+
+/*消息公告隐藏区域*/
+
+.message-hide,
+.userInfo-hide {
+	display: none;
+	position: absolute;
+	color: black;
+	background: white;
+	padding: 0 10px;
+	border-radius: 5px;
+	font-size: 14px;
+	border: 1px solid darkgrey;
+}
+
+.message-hide-list:hover {
+	color: #4778C7;
+}
+
+.userInfo-list:hover {
+	color: #4778C7;
+}
+
+.userInfo-hide-title {
+	text-align: center;
+}
+
+.userInfo-list {
+	line-height: 28px;
+}
+
+.trHeight {
+	height: 40px;
+}
+
+.table-tit {
+	text-align: center;
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+
+/*系统概况*/
+
+.fenlei,
+.fenlei-chaxun {
+	padding: 10px 10px 10px 15px;
+	box-sizing: border-box;
+	font-size: 15px;
+}
+
+.fenlei-list {
+	margin-right: 10px;
+}
+
+.fenlei-chaxun-input:focus {
+	outline: none;
+	border: 1px solid dimgray;
+	box-shadow: 0 0 10px dimgray;
+}
+
+.fenlei-chaxun-input:hover {
+	outline: none;
+	border: 1px solid dimgray;
+	box-shadow: 0 0 10px dimgray;
+}
+
+.fenlei-chaxun-input {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+	padding-left: 5px;
+	box-sizing: border-box;
+}
+
+.fenlei-chaxun label {
+	margin-right: 2%;
+}
+
+.fenlei-chaxun button:hover {
+	border: 1px solid #6E6E6E;
+	background: #DADADA;
+}
+
+
+/*分页*/
+
+.bootstrap-table .fixed-table-pagination>.pagination-detail .page-list {
+	display: inline-block !important;
+}
+
+.edit,
+.look,
+.delet {
+	cursor: pointer;
+}
+
+.look {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+	color: #4778C7 !important;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+	color: #fff !important;
+	background-color: #4778C7;
+	border-color: #4778C7;
+}
+
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:focus,
+.dropdown-menu>.active>a:hover {
+	background-color: #4778C7;
+}
+
+.dropdown-menu {
+	min-width: 50px;
+}
+
+.dropdown-menu li {
+	text-align: center;
+}
+
+.fixed-table-toolbar {
+	background: #F5F9FC;
+}
+
+#mytab th {
+	border-bottom: 1px solid transparent !important;
+}
+
+.yshf-table ::-webkit-scrollbar {
+	display: none;
+}
+
+.table-bordered>tbody>tr>td,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>td,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+	border: 1px solid #ddd;
+}
+
+
+/*系统维护*/
+
+.xtwh-content-left {
+	width: 55%;
+	float: left;
+}
+
+.xtwh-content-right {
+	width: 43%;
+	float: right;
+}
+
+.tit {
+	padding: 10px 10px 10px 15px;
+	/*background: #ED5564;*/
+	background: #4778C7;
+	color: white;
+}
+
+.xtwh-content-left .topp {
+	border: 1px solid gray;
+}
+
+.tit-img {
+	vertical-align: middle;
+}
+
+.xtwh-content-right table tr {
+	height: 35px;
+}
+
+.xtwh-content-right table tr td {
+	text-align: center;
+}
+
+.xtwh-content-right table {
+	border: 1px solid gray;
+}
+
+
+/*系统管理*/
+
+.xtgl-content-list {
+	width: 47%;
+	height: 300px;
+	float: left;
+	border: 1px solid gainsboro;
+	margin: 15px 20px 15px 0px;
+}
+
+.xtgl-content-list-title {
+	line-height: 40px;
+	padding-left: 20px;
+	border-bottom: 2px solid gainsboro;
+}
+
+.fgx {
+	display: inline-block;
+	width: 5px;
+	height: 20px;
+	background: #ED5564;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.xtgl-content-list-title .more {
+	display: inline-block;
+	width: 65px;
+	line-height: 30px;
+	background: #4778C7;
+	border-radius: 5px;
+	text-align: center;
+	float: right;
+	margin-top: 5px;
+	margin-right: 10px;
+	cursor: pointer;
+	color: white;
+}
+
+.xtgl-content-list-title .more:hover {
+	color: #CCCCCC;
+}
+
+.clear {
+	clear: both
+}
+
+.xtgl-content-list-con-info {
+	float: left;
+	margin-left: 20px;
+	width: 430px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.xtgl-content-list-con {
+	line-height: 40px;
+	cursor: pointer;
+}
+
+.xtgl-content-list-con:hover {
+	color: #4778C7;
+}
+
+.xtgl-content-list-con-date {
+	float: right;
+	margin-right: 20px;
+}
+
+.baseSz-search {
+	width: 100%;
+	height: 150px;
+	margin-top: 10px;
+	border: 1px solid gainsboro;
+}
+
+
+/*日志管理*/
+
+.rzglSz-content {
+	width: 100%;
+	margin-top: 20px;
+}
+
+.rzgl-content-left {
+	float: left;
+	width: 35%;
+	border: 1px solid burlywood;
+	box-sizing: border-box;
+}
+
+.rzgl-content-right {
+	float: right;
+	margin-left: 20px;
+	width: 60%;
+	border: 1px solid burlywood;
+	box-sizing: border-box;
+}
+
+.box-title {
+	line-height: 40px;
+	text-align: center;
+	font-weight: bolder;
+	background: cornsilk;
+}
+
+.person-toux {
+	vertical-align: middle;
+}
+
+
+/*分页--跳至第几页start--*/
+
+.pagination-jump>li>span,
+.pagination-jump>li>a {
+	background-color: transparent;
+}
+
+
+/*分页--跳至第几页end--*/
+
+.xw-img {
+	vertical-align: middle;
+}
+
+
+/*基本设置3样式*/
+
+.mytab {
+	width: 100%;
+	margin-top: 1%;
+}
+
+.mytab table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.mytab {
+	-ms-overflow-style: none;
+	overflow: -moz-scrollbars-none;
+	scrollbar-width: none;
+}
+
+.mytab::-webkit-scrollbar {
+	display: none;
+}
+
+label {
+	margin-bottom: 0;
+	/*表格复选框垂直居中*/
+}
+
+.look {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+
+/*自定义复选框样式*/
+
+.checkbox-custom {
+	position: relative;
+	padding: 0 15px 0 25px;
+	margin-bottom: 7px;
+	margin-top: 0;
+	display: inline-block;
+}
+
+
+/*将初始的checkbox的样式改变*/
+
+.checkbox-custom input[type="checkbox"] {
+	opacity: 0;
+	/*将初始的checkbox隐藏起来*/
+	position: absolute;
+	cursor: pointer;
+	z-index: 2;
+	margin: -6px 0 0 0;
+	top: 50%;
+	left: 3px;
+}
+
+
+/* 设计新的checkbox，位置 */
+
+.checkbox-custom label:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -9px;
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	border-radius: 2px;
+	border: 1px solid #bbb;
+	background: #fff;
+}
+
+
+/* 点击初始的checkbox，将新的checkbox关联起来 */
+
+.checkbox-custom input[type="checkbox"]:checked+label:after {
+	position: absolute;
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	content: "\e013";
+	top: 42%;
+	left: 2px;
+	margin-top: -5px;
+	font-size: 11px;
+	line-height: 1;
+	width: 13px;
+	height: 13px;
+	color: #ED5564;
+}
+
+.checkbox-custom label {
+	cursor: pointer;
+	line-height: 1.2;
+	font-weight: normal;
+	/*改变了rememberme的字体*/
+	margin-bottom: 0;
+	text-align: left;
+}
+
+.look {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.look,
+.edit,
+.del {
+	cursor: pointer;
+}
+
+
+/*分页*/
+.btn {
+	padding: 0px 17px !important;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+	border: none !important;
+}
+
+.bootstrap-table .fixed-table-pagination>.pagination ul.pagination a {
+	padding: 4px 10px !important;
+}
+
+.pagination>.active>a {
+	border-radius: 50% !important;
+}
+
+.pagination-jump>li>input {
+	padding: 0px 0px !important;
+	margin-top: 5px !important;
+}
+/*系统概况*/
+.gksz-con{
+	margin-top: 10px;
+}
+.gksz-con-left{
+	float: left;
+	width: 20%;
+	height: 760px;
+	border: 1px solid lightgray;
+	overflow: auto;
+}
+.gksz-con-right{
+	float: right;
+	width: 79%;
+	height: 760px;
+	border: 1px solid lightgray;
+}
+.tree_One_topCon{
+	width: 98%;
+	height: 375px;
+	margin: 0 auto;
+	margin-top: 20px;
+	border: 1px solid gainsboro;
+	position: relative;
+}
+.tree_One_topCon-title{
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    z-index: 99;
+    font-weight: 600;
+    background: bisque;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.layui-input{
+    width: 230px;
+    height: 30px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+.layui-input:hover {
+	outline: none;
+	border: 1px solid dimgray !important;
+	box-shadow: 0 0 10px dimgray !important;
+}
+.layui-form-label {
+    padding: 5px 0px 10px 15px !important;
+}
+.layui-input-block {
+    margin-left: 85px !important;
+}
+.layui-form-item {
+   margin-bottom: 0px;
+}
+.layui-form-item .layui-inline {
+    margin-right: 55px;
+}
+.layui-form-select dl dd.layui-this {
+    background-color:#34AEDF;
+    color: #fff;
+}
+

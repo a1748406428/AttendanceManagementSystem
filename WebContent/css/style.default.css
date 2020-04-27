@@ -86,7 +86,7 @@ table {
   transition: width 0.3s linear;
   width: calc(100% - 200px);
   height:100%
-  background-color: #F4F7FA;
+  background-color: #58e771;
   min-height: 0vh;
   padding-bottom: 0px;
 }

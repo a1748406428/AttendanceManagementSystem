@@ -70,5 +70,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		result.setTotal(count);
 		return result;
 	}
+	//×¢²áĞÂÔ±¹¤
+
+	@Override
+	public int insertNewEmp(EmployeeBean employeeBean) {
+		int row = employeeDao.addintoEmpTable(employeeBean);
+		if (row>0)
+			return row;
+		return 0;
+	}
 	
 }

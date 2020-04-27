@@ -1,6 +1,7 @@
 package boot.service.impl;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -112,6 +113,31 @@ public class DepartInfoServiceImpl implements DepartInfoService {
 			return results;
 		}
 		return null;
+	}
+	//计算工号
+	/*	将工号放入集合中，遍历工号，找到集合中最大的工号然后+1
+	 * */
+	@Override
+	public String calcullateGongHao(Integer did) {
+		List<String> gongHao = departInfoDao.selectGongHao(did);
+		int arraySize = gongHao.size();
+		Integer[] tempArray = new Integer[arraySize];
+		int i =0;
+		for (Iterator iterator = gongHao.iterator(); iterator.hasNext();) {
+			String strGongHao = (String) iterator.next();
+			tempArray[i] = Integer.parseInt(strGongHao);
+			i = i+1;
+		}
+		//求出数组最大值
+		int max = tempArray[0];
+		for(int j =1;j<tempArray.length;j++) {
+			if(tempArray[j]>max) {
+				max = tempArray[j];
+			}
+		}
+		int intGonghao = max+1;
+		String gonghao = String.valueOf(intGonghao);
+		return gonghao;
 	}
 	
 }

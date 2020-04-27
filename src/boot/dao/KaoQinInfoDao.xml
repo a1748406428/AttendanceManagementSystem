@@ -4,31 +4,36 @@
 	<!-- 部门查询 -->
 	<sql id="selectcount">
 		select count(eid) from t_attendancerecord a,t_post p
-		where a.postid = p.id
+		where
+		a.postid = p.id
 	</sql>
 	<!-- 总体查询 -->
 	<sql id="checkTime">
-		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
-			and checktime between STR_TO_DATE(#{startTime},"%Y/%m/%d") and STR_TO_DATE(#{endTime},"%Y/%m/%d")
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			and checktime between STR_TO_DATE(#{startTime},"%Y/%m/%d") and
+			STR_TO_DATE(#{endTime},"%Y/%m/%d")
 		</if>
 	</sql>
 	<!-- 对象关系映射 -->
 	<select id="selectDepart" resultType="boot.pojo.KaoQinInfoBean">
-		select * from t_attendancerecord;
+		select * from
+		t_attendancerecord;
 	</select>
 	<!-- 查询各部门上班正常的人员 -->
 	<select id="selectZcCount" resultType="Integer">
-		<include refid="selectcount"/>
-		<include refid="checkTime"/>
-		and (startcheck between str_to_date("08:00","%H:%i") and str_to_date("09:00","%H:%i"))
+		<include refid="selectcount" />
+		<include refid="checkTime" />
+		and (startcheck between str_to_date("08:00","%H:%i") and
+		str_to_date("09:00","%H:%i"))
 		<if test="did != null">
 			and did = #{did}
 		</if>
 	</select>
 	<!-- 查询各部门缺勤人员 -->
 	<select id="selectQqCount" resultType="Integer">
-		<include refid="selectcount"/>
-		<include refid="checkTime"/>
+		<include refid="selectcount" />
+		<include refid="checkTime" />
 		and (absence="是")
 		<if test="did != null">
 			and did = #{did}
@@ -36,9 +41,10 @@
 	</select>
 	<!-- 查询各部门迟到人员 -->
 	<select id="selectCdCount" resultType="Integer">
-		<include refid="selectcount"/>
-		<include refid="checkTime"/>
-		and (startcheck between str_to_date("09:00","%H:%i") and str_to_date("21:00","%H:%i"))
+		<include refid="selectcount" />
+		<include refid="checkTime" />
+		and (startcheck between str_to_date("09:00","%H:%i") and
+		str_to_date("21:00","%H:%i"))
 		<if test="did != null">
 			and did = #{did}
 		</if>
@@ -46,24 +52,88 @@
 	<!-- 查询正常人数 -->
 	<select id="selectZcCopTotalCount" resultType="Integer">
 		SELECT count(eid) FROM `t_attendancerecord` where
-		startcheck between STR_TO_DATE("08:00","%H:%i") and STR_TO_DATE("09:00","%H:%i")
-		<include refid="checkTime"/>
+		startcheck between
+		STR_TO_DATE("08:00","%H:%i") and STR_TO_DATE("09:00","%H:%i")
+		<include refid="checkTime" />
 	</select>
 	<!-- 查询缺勤人数 -->
 	<select id="selectQqCopTotalCount" resultType="Integer">
 		SELECT count(eid) FROM `t_attendancerecord` where absence = "是"
-		<include refid="checkTime"/>
+		<include refid="checkTime" />
 	</select>
 	<!-- 查询迟到人数 -->
 	<select id="selectCdCopTotalCount" resultType="Integer">
-		SELECT count(eid) FROM `t_attendancerecord` where startcheck between STR_TO_DATE("09:00","%H:%i") 
+		SELECT count(eid) FROM `t_attendancerecord` where startcheck between
+		STR_TO_DATE("09:00","%H:%i")
 		and STR_TO_DATE("10:00","%H:%i")
-		<include refid="checkTime"/>
+		<include refid="checkTime" />
 	</select>
 	<!-- 手动插入考勤人员 -->
-	<insert id="insertInToAttdence" parameterType="boot.pojo.KaoQinInfoBean" 
-	useGeneratedKeys="true" keyProperty="id">
-		insert into t_attendancerecord (checktime,startcheck,endcheck,absence,eid,postid)
+	<insert id="insertInToAttdence"
+		parameterType="boot.pojo.KaoQinInfoBean" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_attendancerecord
+		(checktime,startcheck,endcheck,absence,eid,postid)
 		values(#{checktime},#{startcheck},#{endcheck},#{absence},#{eid},#{postid})
 	</insert>
+	<!-- 根据条件查询考勤人员情况 -->
+	<select id="selectKaoQinInFo"
+		resultType="boot.pojo.KaoQinZongBiaoBean" parameterType="Map">
+		select a.id,e.`name` as
+		'name',a.checktime,a.startcheck,a.endcheck,a.absence,d.`name` as
+		'departname',p.`name` as 'postname' from t_attendancerecord
+		a,t_employee e,t_department d,t_post p 
+		<where>
+			a.eid = e.id and a.postid = p.id and e.departid = d.id
+			<if test="time != null and time != ''">
+				and DATE_FORMAT(STR_TO_DATE(checktime,'%Y/%m/%d'),'%Y/%m') = #{time}
+			</if>
+			<if test="departid != null and departid != ''">
+				and departid = #{departid}
+			</if>
+			<if test="postid != null and postid  != ''">
+				and a.postid = #{postid}
+			</if>
+		</where>
+			<if test="offset != null and limit != null">
+			limit #{offset},#{limit}
+			</if>
+	</select>
+	<!-- 查询考勤总表结果集个数 -->
+	<select id="selectKaoQinInFoCount" resultType="Integer">
+		select count(a.id)
+		from t_attendancerecord
+		a,t_employee e,t_department d,t_post p 
+		<where>
+			a.eid = e.id and a.postid = p.id and e.departid = d.id
+			<if test="time != null and time != ''">
+				and DATE_FORMAT(STR_TO_DATE(checktime,'%Y/%m/%d'),'%Y/%m') = #{time}
+			</if>
+			<if test="departid != null and departid != ''">
+				and departid = #{departid}
+			</if>
+			<if test="postid != null and postid  != ''">
+				and a.postid = #{postid}
+			</if>
+		</where>
+	</select>
+	<!-- 更新个人考勤情况 -->
+	<update id="updateAttdenceInFo">
+		update t_attendancerecord <set>
+			<if test="startcheck != null and startcheck != ''">
+				startcheck = #{startcheck},
+			</if>
+			<if test="endcheck != null and endcheck != ''">
+				endcheck = #{endcheck},
+			</if>
+		</set>
+		<where>
+			<if test="checktime != null and checktime != ''">
+				and checktime = #{checktime}
+			</if>
+			<if test="eid != null and eid != ''">
+				and eid = #{eid}
+			</if>
+		</where>
+	</update>
 </mapper>
