@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import boot.dao.GetEmpSelfInFoDao;
 import boot.dao.GetEmployeeNameDao;
 import boot.po.EmployeePwdBean;
 import boot.po.MannagerPwdBean;
@@ -26,27 +27,43 @@ public class LoginController {
 	
 	@Autowired
 	private GetEmpSelfInfoService getEmpSelfInfoService;
+	
+	@Autowired
+	private GetEmpSelfInFoDao getEmpSelfInFoDao;
+	
+	@Autowired
+	private GetEmployeeNameDao getEmployeeNameDao;
 	//员工登陆
 	@RequestMapping("toempclient.action")
 	public String toEmpClient(EmployeePwdBean employeePwdBean,
-			HttpServletRequest request) {
+			HttpServletRequest request,Model model) {
 		String gonghao = employeePwdBean.getEmpgonghao();
+		String name = getEmpSelfInFoDao.selectEmpName(gonghao);
 		if(loginService.makeSureNameAndPwd(employeePwdBean)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("GONG_HAO",gonghao);
-			return "forward:empmanager.jsp";
+			model.addAttribute("empname", name);
+			return "empmanager";
 		}
 		return "redirect:index.html";
 	}
 	//管理员登陆
 	@RequestMapping("tomannageclient.action")
-	public String toMannage(MannagerPwdBean mannagerPwdBean,HttpServletRequest request) {
+	public String toMannage(MannagerPwdBean mannagerPwdBean,HttpServletRequest request,Model model) {
 		String phone = mannagerPwdBean.getPhone();
+		String manname = getEmployeeNameDao.selectManName(phone);
 		if(loginService.makeSureMannagePhoneAndPwd(mannagerPwdBean)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("GONG_HAO",phone);
+			model.addAttribute("manname", manname);
 			return "mannager";
 		}
+		return "redirect:index.html";
+	}
+	//管理员退出当前账号
+	@RequestMapping("logout.action")
+	public String logoutToIndex(HttpSession session) {
+		session.invalidate();
 		return "redirect:index.html";
 	}
 	@RequestMapping("/mannager.action")

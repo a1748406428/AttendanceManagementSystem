@@ -12,4 +12,6 @@ public interface GetEmployeeNameDao {
 	public EmployeePwdBean selectGonghaoAndPwd(EmployeePwdBean employeePwdBean);
 	//查询管理员账号和
 	public MannagerPwdBean selectMannagePhoneAndPwd(MannagerPwdBean mannagerPwdBean);
+	//查询管理员姓名
+	public String selectManName(String phone);
 }

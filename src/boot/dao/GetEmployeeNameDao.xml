@@ -17,4 +17,8 @@
 		where phone = #{phone}
 		and password= #{password}
 	</select>
+	<!-- 查询管理员的姓名 -->
+	<select id="selectManName" resultType="String">
+		select name from t_user where phone = #{phone}
+	</select>
 </mapper>

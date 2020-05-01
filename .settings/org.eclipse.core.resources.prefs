@@ -1,5 +1,14 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/html/buchangjihua.html=UTF-8
+encoding//WebContent/WEB-INF/html/empregister.html=UTF-8
+encoding//WebContent/WEB-INF/html/gsck.html=UTF-8
+encoding//WebContent/WEB-INF/html/jixiaopingding.html=UTF-8
+encoding//WebContent/WEB-INF/html/kaoqinqingkuang.html=UTF-8
+encoding//WebContent/WEB-INF/html/kaoqinzongbiao.html=UTF-8
+encoding//WebContent/WEB-INF/html/paibanguanli.html=UTF-8
+encoding//WebContent/WEB-INF/html/qingjiashenqingdan.html=UTF-8
+encoding//WebContent/WEB-INF/html/queqinjilu.html=UTF-8
+encoding//WebContent/WEB-INF/jsp/empmanager.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/xxzx.jsp=UTF-8
-encoding//WebContent/empmanager.jsp=UTF-8
 encoding//src/boot/page/utils/NavigationTag.java=UTF-8
 encoding//src/boot/page/utils/Page.java=UTF-8

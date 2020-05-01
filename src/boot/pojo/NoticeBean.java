@@ -5,15 +5,17 @@ public class NoticeBean {
 	private String content;
 	private String daytime;
 	private String gonghao;
+	private String status;
 	public NoticeBean() {
 		super();
 	}
-	public NoticeBean(Integer id, String content, String daytime, String gonghao) {
+	public NoticeBean(Integer id, String content, String daytime, String gonghao, String status) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.daytime = daytime;
 		this.gonghao = gonghao;
+		this.status = status;
 	}
 	public Integer getId() {
 		return id;
@@ -38,6 +40,12 @@ public class NoticeBean {
 	}
 	public void setGonghao(String gonghao) {
 		this.gonghao = gonghao;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

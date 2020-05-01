@@ -12,6 +12,7 @@ import boot.dao.DailyMannageDao;
 import boot.pojo.JiTiJiaTiaoBean;
 import boot.pojo.JiaTiaoBean;
 import boot.pojo.JiangLiInFoBean;
+import boot.pojo.NoticeBean;
 import boot.service.DailyMannageService;
 
 @Service
@@ -36,6 +37,14 @@ public class DailyMannageServiceImpl implements DailyMannageService{
 			return rows;
 		return 0;
 	}
+	//删除假条信息
+	@Override
+	public int deletePersonJiaTiaoById(Integer id) {
+		int row = dailyMannageDao.deletePersonJiaTiaoById(id);
+		if(row>0)
+			return row;
+		return 0;
+	}
 	//查看集体假条状态
 	@Override
 	public Map<String, Object> browseJiTiJiaTiao(Map<String, Object> param) {
@@ -46,6 +55,12 @@ public class DailyMannageServiceImpl implements DailyMannageService{
 		result.put("total", totalCount);
 		return result;
 	}
+	//删除集体假条信息
+	@Override
+	public int deleteJiTiJiaTiao(Integer id) {
+		dailyMannageDao.deletejitiJiaTiao(id);
+		return 0;
+	}
 	@Override
 	public Integer updateJiJiaTiaoStatus(Integer id, String status) {
 		int rows = dailyMannageDao.updateJiTiJiaTiaoStatus(id, status);
@@ -53,6 +68,7 @@ public class DailyMannageServiceImpl implements DailyMannageService{
 			return rows;
 		return 0;
 	}
+	
 	//汇总奖励条数
 	@Override
 	public void huiZongJiangLi(Map<String, Object> param) {
@@ -85,6 +101,24 @@ public class DailyMannageServiceImpl implements DailyMannageService{
 		int rows = dailyMannageDao.updateJiangLiInFo(id, status,tempyingdejiangli);
 		if(rows>0)
 			return rows;
+		return 0;
+	}
+	//添加公共消息库
+	@Override
+	public int addIntoPublicNotice(NoticeBean noticeBean) {
+		int row = dailyMannageDao.addPublicNotice(noticeBean);
+		if(row>0) {
+			return row;
+		}
+		return 0;
+	}
+	//添加私人消息库
+	@Override
+	public int addIntoPrivateNotice(NoticeBean noticeBean) {
+		int row = dailyMannageDao.addPrivateNotice(noticeBean);
+		if(row>0) {
+			return row;
+		}
 		return 0;
 	}
 	

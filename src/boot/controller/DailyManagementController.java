@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import boot.pojo.NoticeBean;
 import boot.service.DailyMannageService;
 
 @Controller
@@ -46,10 +47,15 @@ public class DailyManagementController {
 		String status = request.getParameter("status");
 		dailyMannageService.updateJiaTiaoStatus(id, status);
 		try {
-			response.getWriter().write(200);
+			response.getWriter().write("200");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	//删除假条信息
+	@RequestMapping("deletepersonjiatiao.action")
+	public void deletePersonJiaTiao(@RequestParam(value="id")Integer id) {
+		int row = dailyMannageService.deletePersonJiaTiaoById(id);
 	}
 	//集体假条浏览
 	@RequestMapping("jitijiatiao.action")
@@ -78,6 +84,11 @@ public class DailyManagementController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	//删除集体假条信息
+	@RequestMapping("deletejitijiatiao.action")
+	public void deleteJiTiJiaTiao(@RequestParam(value="id")Integer id) {
+		dailyMannageService.deleteJiTiJiaTiao(id);
 	}
 	//to调休管理
 	@RequestMapping("txgl.action")
@@ -111,7 +122,11 @@ public class DailyManagementController {
 		Map<String,Object> param = new HashMap<String,Object>();
 		param.put("offset", offset);
 		param.put("limit", limit);
-		param.put("month", month);
+		if(month.equals("NaN/NaN")) {
+			param.put("month", null);
+		}else {
+			param.put("month", month);
+		}
 		System.out.println(month);
 		return dailyMannageService.selectJiangLiInFo(param);
 	}
@@ -133,9 +148,14 @@ public class DailyManagementController {
 			e.printStackTrace();
 		}
 	}
-	//to通知广播
-	@RequestMapping("tzgb.action")
-	public String toTongZhiGuangBo() {
-		return "tongzhi";
+	//通知并更新数据库中的信息
+	@RequestMapping("updatepublicnotice.action")
+	public void addPublicNotice(NoticeBean noticeBean) {
+		dailyMannageService.addIntoPublicNotice(noticeBean);
+	}
+	//更新个人信息库
+	@RequestMapping("updateprivatenotice.action")
+	public void addPrivateNotice(NoticeBean noticeBean) {
+		dailyMannageService.addIntoPrivateNotice(noticeBean);
 	}
 }

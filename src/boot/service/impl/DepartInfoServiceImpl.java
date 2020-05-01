@@ -12,7 +12,9 @@ import boot.dao.DepartInfoDao;
 import boot.page.utils.Page;
 import boot.pojo.DepartInfoBean;
 import boot.pojo.EmployeeBean;
+import boot.pojo.KaoHeInFoBean;
 import boot.pojo.PostBean;
+import boot.pojo.TaskBean;
 import boot.service.DepartInfoService;
 import boot.vo.YiXiangMessageBean;
 
@@ -138,6 +140,74 @@ public class DepartInfoServiceImpl implements DepartInfoService {
 		int intGonghao = max+1;
 		String gonghao = String.valueOf(intGonghao);
 		return gonghao;
+	}
+	//任务分发
+
+	@Override
+	public void taskSend(TaskBean taskBean) {
+		departInfoDao.addTask(taskBean);
+	}
+	//查看离职申请
+
+	@Override
+	public Map<String, Object> selectResignApp(Map<String, Object> param) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<YiXiangMessageBean> data = departInfoDao.selectResignationApplicationMessage(param);
+		Integer total = departInfoDao.selectResignationApplicationMessageCount();
+		map.put("data", data);
+		map.put("total", total);
+		return map;
+	}
+	//更新离职申请单状态信息
+
+	@Override
+	public boolean updateResignStatus(Integer eid,String status) {
+		int row1 = departInfoDao.AgreeResign(eid,status);
+		int row2 = departInfoDao.UnAgreeResign(eid,status);
+		if(row1>0 || row2 > 0) {
+			return true;
+		}
+		return false;
+	}
+	//计算部门出勤率
+
+	@Override
+	public String calculDepartAtt(String month, Integer departid) {
+		Integer count = departInfoDao.selectChuQinCount(month, departid);
+		Integer totalcount = departInfoDao.selectTotalChuQinCount(month, departid);
+		System.out.println(count);
+		System.out.println(totalcount);
+		
+		float flchuqinlv = ((float)count/(float)totalcount)*100;
+		System.out.println(flchuqinlv);
+		String strchuqinlv = String.valueOf(flchuqinlv);
+		return strchuqinlv;
+	}
+	//查看任务完成度
+	@Override
+	public String selectTaskProgress(String month, Integer departid) {
+		String taskProgress = departInfoDao.selectTaskProgress(month, departid);
+		return taskProgress;
+	}
+	//提交考核情况表
+
+	@Override
+	public int submitKaoHeBiao(KaoHeInFoBean kaoHeInFoBean) {
+		int row = departInfoDao.submitKaoHeInFo(kaoHeInFoBean);
+		if(row>0)
+			return row;
+		return 0;
+	}
+	//考核表
+
+	@Override
+	public Map<String, Object> selectKaoHeSum(Map<String, Object> param) {
+		Map<String,Object> result = new HashMap<String,Object>();
+		List<KaoHeInFoBean> data = departInfoDao.selectKaoHeInFo(param);
+		Integer total = departInfoDao.selectKaoHeInFoTotal(param);
+		result.put("data", data);
+		result.put("total", total);
+		return result;
 	}
 	
 }

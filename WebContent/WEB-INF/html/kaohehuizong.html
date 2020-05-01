@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>考核汇总</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+    <script type="text/javascript" src= "https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" ></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
+    <script type="text/javascript" src="js/tableExport.js"></script>
+</head>
+<body>
+<div id="toolbar" class="toolbar">
+<div class="form-inline">
+	<span class="form-control bg-second" style="background: #f0ebe3;">选择时间:</span>
+	<input type="month" class="form-control" id="monthinput">&nbsp;&nbsp;
+	<span class="form-control" style="background: #f0ebe3;">选择部门:</span>
+	<select id="bumen" name="departid" class="form-control">
+				<option value="">-请选择-</option>
+				<option value="1">研发部</option>
+				<option value="2">运营部</option>
+				<option value="3">运维部</option>
+				<option value="4">产品部</option>
+				<option value="5">财务部</option>
+				<option value="6">法务部</option>
+			</select>&nbsp;
+	<button class="btn btn-outline-primary form-control fa fa-search" id="selectbtn">查询</button>
+</div>
+</div>
+<table id="kaohetable" style="table-layout:fixed;" class="table table-condensed table-hover table-bordered">
+			<thead >
+				<tr>
+					<th data-field="state" data-checkbox='ture'></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>	
+		</table>
+		<script type="text/javascript">
+			
+		</script>
+</body>
+    <script type="text/javascript">
+    	$(function(){
+    		$("#selectbtn").click(function () {
+    			var date = $("#monthinput").val();
+    			var tempmonth = new Date(date);
+    			var year = tempmonth.getFullYear();
+    			var month = tempmonth.getMonth()+1;
+    			month = month<10?year+'/'+'0'+month:year+'/'+month;
+    			var departid = $("#bumen").val();
+    			/* $("#kaohetable").bootstrapTable("refresh").bootstrapTable({
+    				url : "khzbtable.action",
+    				queryParams : function(params) {//自定义参数，这里的参数是传给后台的，我这是是分页用的  
+                        return {//这里的params是table提供的  
+                            offset : params.offset,//从数据库第几条记录开始  
+                            limit : params.limit, //找多少条 
+                            month : month,
+                            depid:departid
+                        };
+                    }   				
+    			}) */
+    			$("#kaohetable").bootstrapTable('destroy').bootstrapTable(
+	  	                {	
+	  	                    url : "khzbtable.action",//数据请求路径
+	  	                    clickToSelect : true,  //点击表格项即可选择
+	  	                    dataType : "json",   //后端数据传递类型
+	  	                    pageSize : 5,
+	  	                    cache:"false",
+	  	                    pageList : [5,10,20],
+	  	                    contentType : "application/x-www-form-urlencoded",
+	  	                    method : 'get',      //请求类型
+	  	                    dataField : "data",  //很重要，这是后端返回的实体数据！ 
+	  	                     sidePagination: "server",
+	  	                    pagination: true,
+	  	                    pageNumber:1,
+	  	                    showToggle:true, 
+	  	                    uniqueId: "id",
+	  	                    search:true,
+	  	                    toolbar:"#toolbar",
+	  	                    showColumns: true,                  //是否显示所有的列
+	  	                    showRefresh: true, 
+	  	                    showExport:true,
+	  	                    exportDataType: "basic",
+	  	                    clickToSelect: true, 
+	  	                    queryParamsType:'limit',
+	  	                    //是否显示详细视图和列表视图的切换按钮
+	  	                     queryParams : function(params) {//自定义参数，这里的参数是传给后台的，我这是是分页用的  
+	  	                        return {//这里的params是table提供的  
+	  	                            offset : params.offset,//从数据库第几条记录开始  
+	  	                            limit : params.limit, //找多少条 
+	  	                          	month : month,
+	  	                            depid : departid
+	  	                        };
+	  	                    },  
+	  	                     responseHandler : function(res) {
+	  	                        //在ajax获取到数据，渲染表格之前，修改数据源
+	  	                        return res;
+	  	                    }, 
+	  	                    columns : [
+	  	                            {field : 'state'},
+	  	                            {field:'id',title:'序号', align:'center'},
+	  	                            {field : 'month',title : '时间',align : 'center'},
+	  	                            {field : 'depname',title : '部门名称',align : 'center'},
+	  	                            {field : 'totalgoal',title : '考核总分',align : 'center'},
+	  	                            {field : 'attratio',title : '出勤率',align : 'center'},
+	  	                            {field : 'progressschedule',title : '任务进度(单位:%)',align : 'center'},
+	  	                            {field : 'jixiao',title : '绩效等级',align : 'center'},
+	  	                            {field : 'depid',title : '部门编号',align : 'center'},
+	  	                            ]
+	  	                });
+			})
+    	})
+    </script>
+</html>

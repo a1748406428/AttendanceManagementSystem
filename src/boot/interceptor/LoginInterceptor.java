@@ -14,21 +14,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String url = request.getRequestURI();
-		// 除了index.jsp或者register.jsp可以被直接访问，其他的进行拦截控制
-		if (url.indexOf("login.action") >= 0 || url.indexOf("checkIsNULL.action") >= 0
-				|| url.indexOf("shengshi.action") >= 0 || url.indexOf("shixian.action") >= 0
-				|| url.indexOf("empreg.action") >= 0) {
+		// 除了index.html或者register.jsp可以被直接访问，其他的进行拦截控制
+		if (url.indexOf("index.html") >= 0) {
 			return true;
 		}
 		// 获取session
 		HttpSession httpSession = request.getSession();
-		String name = (String) httpSession.getAttribute("USER_SESSION");
+		String name = (String) httpSession.getAttribute("GONG_HAO");
 		if (name != null) {
 			return true;
 		}
 		// 不符合条件的给出提示信息，并且重定向到登陆界面
 		request.setAttribute("msg", "您还没有登陆，请登陆");
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("index.html");
 		return false;
 	}
 

@@ -31,9 +31,10 @@
 				<label for="reasonid">请假类型</label>
 				<select class="form-control custom-select" id="reasonid">
 					<option>-请选择-</option>
-					<option>生病</option>
-					<option>事假</option>
-					<option>产假</option>
+					<option value="生病">生病</option>
+					<option value="事假">事假</option>
+					<option value="产假">产假</option>
+					<option value="陪产">陪产</option>
 				</select>
 				</div>
 				
@@ -80,9 +81,8 @@
 			$("#submitqingjiadan").click(function () {
 				var name = $("#name").val();
 				var empid = $("#empid").val();
-				var selectreason = $("#reasonid").find("option:selected").text();
+				var selectreason = $("#reasonid").val();
 				var qita = $("#qita").val();
-				var reason;
 				var totalday = $("#totalday").val();
 				var day = new Date();
 				day.setTime(day.getTime());
@@ -93,13 +93,12 @@
 				var phone = $("#phone").val();
 				var depid = $("#depid").val();
 				var status = $('#status').val();
-				var daytime = year+"/"+month+"/"+datetime
-				if (selectreason!=null || selectreason != undefined || selectreason != '') {
+				var daytime = year+"/"+month+"/"+datetime;
+				if (selectreason != null && selectreason.length > 0 ) {
 					reason = selectreason;
-				}else if(qita!=null || qita != undefined || qita != ''){
+				}else if(qita != null && qita.length > 0 ){
 					reason = qita;
 				}
-				
 				$.ajax(
 		        		{
 		        			url:"empqingjia.action",

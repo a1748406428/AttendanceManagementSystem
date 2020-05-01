@@ -318,16 +318,16 @@ $(function() {
 	$("#tongyi").click(function() {
 		var id = $("#linshiid").val();
 		$.post("pizhun.action", {id:id,status : "同意"},function(data, status) {
-			if(data==200) {
+			if(data=="200") {
 				$("#qingjiatable").bootstrapTable('refresh');
 			}
 		})
 	})
 
 	$("#butongyi").click(function() {
-		var id = $("#linshieid").val();
+		var id = $("#linshiid").val();
 		$.post("pizhun.action", {id:id,status:"不同意"},function(data, status) {
-			if(data==200) {
+			if(data=="200") {
 				$("#qingjiatable").bootstrapTable('refresh')
 			}
 		})

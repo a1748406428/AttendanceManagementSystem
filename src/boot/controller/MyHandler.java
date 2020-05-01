@@ -55,7 +55,7 @@ public class MyHandler extends TextWebSocketHandler{
 				for (Iterator<String> iterator = keySet.iterator(); iterator.hasNext();) {
 					try {
 						String gonghao = iterator.next();
-						//判断这位刚刚登陆的用户当管理员发送消息的时候在不在，如果不在说明账号被存入离线信息表中，然后根据名字进行匹配
+						//判断这位刚刚登陆的用户当管理员发送消息的时候在不在，如果不在说明账号被存入离线信息表中，然后根据名字进行匹配发送信息
 						if(userid.equals(gonghao)) {
 							users.get(gonghao).sendMessage(tempMsg.get(gonghao));
 							iterator.remove();
@@ -85,42 +85,40 @@ public class MyHandler extends TextWebSocketHandler{
         String sendUser = message.getPayload().split("[|]")[2];
         if(sendToUser.equals("everyone")){
             sendMessageToUsers(new TextMessage("发件人:"+sendUser+"\r\n"+"正文"+"\r\n"+sendmessage));
-        }
-        else if(message.getPayload().startsWith(sendToUser)){ //单发某人
-            sendMessageToUser(sendToUser, new TextMessage("发件人:"+sendUser+"\r\n"+"正文"+"\r\n"+sendmessage)) ;
+        }//(message.getPayload().startsWith(sendToUser))
+        else{ //单发某人
+            sendMessageToUser(sendToUser, new TextMessage("发件人:"+sendUser+"\r\n"+"正文"+"\r\n"+sendmessage));
+            System.out.println(sendToUser+(new TextMessage("发件人:"+sendUser+"\r\n"+"正文"+"\r\n"+sendmessage)).toString());
         } 
 	}
 	//发送信息给指定用户
-    public void sendMessageToUser(String userId, TextMessage message) {
-    	try {
+    public void sendMessageToUser(String userId, TextMessage message) throws IOException {
+    	list = getEmployeeNameDao.getEmployeePwd();
     		 if(userId.equals("13218039275")) {
 				if(users.get("13218039275").isOpen()) {
-					try {
-						users.get("13218039275").sendMessage(message);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					users.get("13218039275").sendMessage(message);
+				}
+				//存储离线消息
+				else if(!users.containsKey("13218039275")) {
+					tempMsg.put("13218039275",message);
 				}
 				
 			}
+    		 else {
     		for (Iterator<EmployeePwdBean> iterator = list.iterator(); iterator.hasNext();) {
     			EmployeePwdBean employeePwdBean = (EmployeePwdBean) iterator.next();
-    			if(!users.containsKey("13218039275")) {
-    				tempMsg.put("13218039275",message);
-    			}
-    			else if(userId.equals(employeePwdBean.getEmpgonghao())) {
+    			if(userId.equals(employeePwdBean.getEmpgonghao())) {
     				try {
-                        if (users.get(employeePwdBean.getEmpgonghao()).isOpen()) {
+    					if (users.get(employeePwdBean.getEmpgonghao()).isOpen()) {
                             users.get(employeePwdBean.getEmpgonghao()).sendMessage(message);
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
+					} catch (NullPointerException e) {
+						tempMsg.put(employeePwdBean.getEmpgonghao(),message);
+					}
+    				break;
+                    } 
     			}
     		}
-		} catch (NullPointerException e) {
-		}
     }
 	//广播消息
     public void sendMessageToUsers(TextMessage message) throws IOException {

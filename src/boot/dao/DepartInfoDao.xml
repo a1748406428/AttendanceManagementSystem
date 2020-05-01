@@ -55,6 +55,7 @@
 				and time = #{time}
 			</if>
 		</where>
+		order by time DESC
 		<if test="offset != null and limit != null">
 			limit #{offset},#{limit}
 		</if>
@@ -99,5 +100,78 @@
 	<!-- 查询部门编号 -->
 	<select id="selectGongHao" resultType="String">
 		SELECT gonghao FROM `t_employee` where departid = #{did}
+	</select>
+	<!-- 任务分发 -->
+	<insert id="addTask"  useGeneratedKeys="true" keyProperty="id">
+		insert into t_task(content,daytime,deadline,leaderid)
+		values(#{content},#{daytime},#{deadline},#{leaderid})
+	</insert>
+	<!-- 查看离职收件箱 -->
+	<select id="selectResignationApplicationMessage" resultType="boot.vo.YiXiangMessageBean">
+		select * from t_resignationapplication
+		order by time DESC
+		<if test="offset != null and limit != null">
+			limit #{offset},#{limit}
+		</if>
+	</select>
+	<!--  -->
+	<select id="selectResignationApplicationMessageCount" resultType="Integer">
+		select count(id) from t_resignationapplication
+	</select>
+	<update id="AgreeResign">
+		update t_resignationapplication set status = #{status} where eid = #{eid}
+	</update>
+	<update id="UnAgreeResign">
+		update t_resignationapplication set status = #{status} where eid = #{eid}
+	</update>
+	<!-- 查看正常出勤情况 -->
+	<select id="selectChuQinCount" resultType="Integer">
+		select count(id) from t_attendancerecord  where date_format(str_to_date(checktime,'%Y/%m/%d'),'%Y/%m') = #{month} and absence = '否' and did = #{departid} 
+	</select>
+	<!-- 查看总出勤情况 -->
+	<select id="selectTotalChuQinCount" resultType="Integer">
+		select count(id) from t_attendancerecord  where date_format(str_to_date(checktime,'%Y/%m/%d'),'%Y/%m') = #{month} and did = #{departid}
+	</select>
+	<!-- 查看任务完成度 -->
+	<select id="selectTaskProgress" resultType="String">
+		select progress from t_task t,t_leader l 
+		where t.leaderid = l.id and l.did = #{departid} 
+		and date_format(str_to_date(daytime,'%Y/%m/%d'),'%Y/%m') = #{month}
+	</select>
+	<!-- 提交考核信息 -->
+	<insert id="submitKaoHeInFo" useGeneratedKeys="true" keyProperty="id">
+		insert into	t_kaoheinfo(id,month,depid,totalgoal,attratio,progressschedule,jixiao)
+		values(#{id},#{month},#{depid},#{totalgoal},#{attratio},#{progressschedule},#{jixiao})
+	</insert>
+	<!-- 查看考核信息 -->
+	<select id="selectKaoHeInFo" parameterType="Map" resultType="boot.pojo.KaoHeInFoBean">
+		select k.id,k.depid, k.month,k.totalgoal,k.attratio,k.progressschedule,k.jixiao,d.name as 'depname'
+		from t_kaoheinfo k,t_department d
+		<where>
+			k.depid = d.id
+			<if test="month != null and month != ''">
+				and month = #{month}
+			</if>
+			<if test="depid != null and depid != ''">
+				and depid = #{depid}
+			</if>
+		</where>
+		order by month DESC
+		<if test="offset != null and limit != null">
+			limit #{offset},#{limit}
+		</if> 
+	</select>
+	
+	<select id="selectKaoHeInFoTotal" resultType="Integer">
+			select count(k.id) from t_kaoheinfo k,t_department d
+		<where>
+			k.depid = d.id
+			<if test="month != null and month != ''">
+				and month = #{month}
+			</if>
+			<if test="depid != null and depid != ''">
+				and depid = #{depid}
+			</if>
+		</where> 
 	</select>
 </mapper>

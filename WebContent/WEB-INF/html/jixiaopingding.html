@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>绩效评定与考核</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+</head>
+<body>	
+
+<div class="container-fluid">
+<div class="card">
+<div class="card-header">
+	<form action="" class="form-inline">
+	<div class="form-group">
+	<label>选择月份:</label><input type="month" id="monthinput" class="form-control">
+	</div>
+	<div class="form-group">
+	<label>考核对象:</label>
+			<select id="bumen" name="departid" class="form-control">
+				<option value="">-请选择-</option>
+				<option value="1">研发部</option>
+				<option value="2">运营部</option>
+				<option value="3">运维部</option>
+				<option value="4">产品部</option>
+				<option value="5">财务部</option>
+				<option value="6">法务部</option>
+			</select>
+			</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<div class="form-group" style="color: blue;">注：评估标准:客观评分：出勤情况:占比30%，月度任务完成情况:占比70%,主观评分每个加分项最高5分</div>
+			</form>
+			</div>
+<!-- 	查看考勤情况：全勤且正常上班的百分比*评判标准
+				 部门总体任务完成度*评判标准
+				评判完成情况，并自动将结果写道部门表中的绩效评定与考核中 
+				
+				-->
+	</div>		
+	<div class="card">
+		<div class="card-header text-center">
+			客观评估
+		</div>
+		<div class="card-body" style="margin-left: 33%">
+		<form action="">
+		<div class="form-row">
+				<div class="form-inline">
+					<div class="form-group" >
+					<button type="button" id="chuqinbtn" class="btn btn-outline-primary form-control">查看出勤率</button>
+					&nbsp;&nbsp;<input type="text" id="chuqinlv" class="form-control">%
+					</div>
+				</div>
+				</div>
+				<br>
+				<div class="form-row">
+				<div class="form-inline">
+					<div class="form-group">
+					<button type="button" id="renwubtn" class="btn-outline-primary form-control">任务完成度</button>
+					&nbsp;&nbsp;<input type="text" id="renwu" class="form-control">%
+					</div>
+				</div>
+				</div>
+		</form>
+	</div>
+	<!--
+		接口2：根据部门情况调整部门的考核情况
+		  考核绩点总分100
+		  年终奖 = 部门平均薪资*10%
+		  评判标准：
+		  	如果部门考勤中员工的正常按时上班人数不低于98%，那么不扣分，如果低于98%大于等于95%扣2分，如果90%-94%扣5分封顶，如果再低：开除缺勤次数多的员工
+		  	如果部门给公司下发的任务完成度达100%奖励2分，封顶到绩点总分100，如果完成度低于100% 则扣2分 低于90%扣10分
+		  	员工请假集体假，不算做在考勤情况中，与员工个人奖惩有关
+		接口3:根据部门的考核情况进行评定部门福利 
+		  如果分数为100，全体年终奖*2+员工每人每月工资+500+价值3000元大礼包
+		 如果分数为95-99，全体年终奖*1.5+员工每人每月工资+500+价值3000元大礼包
+		 如果分数为90-94，全体年终奖*1+价值3000元大礼包
+		 如果分数为85-89，年终奖*0.5+价值3000元大礼包
+		 如果分数为80-84，价值3000元大礼包
+		 如果分数为75-79，价值1000元大礼包
+		 -->
+		 </div>
+		 <div class="card ">
+					<div class="card-header text-center">主观评估</div>
+					<div class="card-body" style="margin-left: 33%">
+						<div class="form-row">
+						<div class="col-md-6">
+							<label>执行力：</label>
+							<select id="zhixingli" class="form-control text-center">
+								<option value="">-选择-</option>
+								<option value="1">+1分</option>
+								<option value="2">+2分</option>
+								<option value="3">+3分</option>
+								<option value="4">+4分</option>
+								<option value="5">+5分</option>
+							</select>
+						</div>
+						</div>
+						<div class="form-row">
+						<div class="col-md-6">
+							<label>工作失误和安全事故</label>
+							<select id="shiwu" class="form-control">
+								<option value="">-选择-</option>
+								<option value="1">-1分</option>
+								<option value="2">-2分</option>
+								<option value="3">-3分</option>
+								<option value="4">-4分</option>
+								<option value="5">-5分</option>
+							</select>
+						</div>
+						</div>
+						<div class="form-row">
+						<div class="col-md-6">
+							<label>团队精神</label>
+							<select id="tuanduijingshen" class="form-control">
+								<option value="">-选择-</option>
+								<option value="1">+1分</option>
+								<option value="2">+2分</option>
+								<option value="3">+3分</option>
+								<option value="4">+4分</option>
+								<option value="5">+5分</option>
+							</select>
+							</div>
+						</div>				
+				</div>
+		</div>
+		<div class="card">
+		<div class="card-header text-center">评估计算
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="rules.html" target="_balnk">查看评估计算规则</a></span>
+		</div>
+		<div class="card-body" style="margin-left: 33%">
+		<div class="form-row">
+		<div class="col-md-6">
+		<button id="sumgoals" class="btn btn-outline-primary form-control">合并计算总分：</button>
+		<input type="text" id="totalgoals" class="form-control">
+		</div>
+		</div>
+		<div class="form-row">
+		<div class="col-md-6">
+			<label class="text-center">绩效评判:</label>
+			<select class="form-control" id="jixiaojudge">
+			<option>-请选择-</option>
+			<option>优秀+</option>
+			<option>优秀</option>
+			<option>良好</option>
+			<option>中等上</option>
+			<option>中等下</option>
+			<option>差</option>
+			<option>极差</option>
+			</select>
+		</div>
+		</div>
+		<div class="form-row">
+			<div class="col-md-6">
+			<button type="button" id="submitbtn" class="btn btn-outline-primary form-control">提交考核</button>
+			</div>
+			</div>
+		</div>
+	<!-- <div class="card">
+		 	<div class="card-header text-center">
+		 		年终汇总表
+		 	</div>
+		 	<div class="card-body" style="margin-left: 33%">
+		 	<div class="form-row">
+		 		<div class="col-md-6">
+		 		<button type="button" class="btn btn-outline-primary form-control">点击查看福利标准</button>
+		 		
+		 		<button type="button" class="btn btn-outline-primary form-control">福利计算:</button>
+		 		<input type="text" class="form-control">
+		 		</div>
+		 		</div>
+		 	</div>
+		 </div> -->
+		</div>
+		 </div>
+		 
+</body>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//查看出勤率
+		$("#chuqinbtn").click(function(){
+			var date = $("#monthinput").val();
+			var tempmonth = new Date(date);
+			var year = tempmonth.getFullYear();
+			var month = tempmonth.getMonth()+1;
+			month = month<10?year+'/'+'0'+month:year+'/'+month;
+			var departid = $("#bumen").val();
+			$.post('selectcql.action',{month:month,departid:departid},function(data,status){
+				$("#chuqinlv").val(data)
+			})
+		})
+		$("#renwubtn").click(function(){
+			var date = $("#monthinput").val();
+			var tempmonth = new Date(date);
+			var year = tempmonth.getFullYear();
+			var month = tempmonth.getMonth()+1;
+			month = month<10?year+'/'+'0'+month:year+'/'+month;
+			var departid = $("#bumen").val();
+			$.post('progress.action',{month:month,departid:departid},function(data,status){
+				$("#renwu").val(data.substring(0,data.length-1))
+			})
+		})
+		
+		$("#sumgoals").click(function(){
+			var chuqinlv = parseInt($("#chuqinlv").val());
+			var chuqingoal;
+			var renwu = parseInt($("#renwu").val());
+			var renwugoal;
+			var zhixingli = parseInt($("#zhixingli").val());
+			var shiwu = parseInt($("#shiwu").val());
+			var tuanduijingshen = parseInt($("#tuanduijingshen").val());
+			if(chuqinlv>=98){
+				chuqingoal = 100*0.3;
+			}else if( chuqinlv>=95&&chuqinlv<98){
+				chuqingoal = 95*0.3;
+			}else{
+				chuqingoal = 90*0.3;
+			}
+			if(renwu==100){
+				renwugoal = 110*0.7;
+			}else if(renwu>=90&&renwu<100){
+				renwugoal = 95*0.7;
+			}else{
+				renwugoal = 90*0.7;
+			}
+			var totalgoals = chuqingoal+renwugoal+zhixingli-shiwu+tuanduijingshen;
+			$("#totalgoals").val(totalgoals);
+		})
+		$("#submitbtn").click(function(){
+			var jixiaojudge = $("#jixiaojudge").val();
+			var date = $("#monthinput").val();
+			var tempmonth = new Date(date);
+			var year = tempmonth.getFullYear();
+			var month = tempmonth.getMonth()+1;
+			month = month<10?year+'/'+'0'+month:year+'/'+month;
+			var chuqinlv = $("#chuqinlv").val();
+			var departid = $("#bumen").val();
+			var renwu = $("#renwu").val();
+			var totalgoals = parseFloat($("#totalgoals").val().toString());
+			$.ajax({
+				type:"post",
+				url:"jixiaotijiao.action",
+				//JSON解析float时出现精度丢失问题，不知如何解决
+				data:JSON.stringify({
+					month:month,
+					depid:departid,
+					totalgoal:totalgoals,
+					attratio:chuqinlv,
+					progressschedule:renwu,
+					jixiao:jixiaojudge
+        		  }),
+        		 contentType:"application/json;charset=UTF-8",
+        		 success:function(data){
+        			if(data!=null){
+        				alert(data)
+        			}else{
+        				alert("返回值为空")
+        			}
+       		  }
+			})
+		})
+	})
+
+</script>
+</html>

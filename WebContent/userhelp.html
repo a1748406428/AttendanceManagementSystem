@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/style4.css">
+<link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="no title" >
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+</head>
+<script type="text/javascript">
+	$(function(){
+		$("#helpbtn").click(function(){
+			$("#cons").show();
+			$(".ph-post1-wrapper").hide();
+		})
+	})
+</script>
+<script src="js/script.js"></script>
+<body style="overflow: scroll;">
+		<div class="ph-post1-wrapper">
+		<h1>使用帮助</h1>
+		<a id="helpbtn" class="button" data-title="Let's Start" href="#">
+			<span><span >Let's Start</span></span>
+		</a>
+	</div>
+		<div class="container" style="display: none;" id="cons">
+		<div class="card-header text-white text-center bg-dark"><h2>使用帮助</h2></div>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		人事信息模块，点击员工注册按钮得到如下界面。注意，图中用矩形圈起来的是不用手动输入，当选择部门后将自动递增方式生成对应工号。
+		考虑公司有人员变动问题，为了重新使用流失人员的工号，在此处可以手动输入！</div></figcaption>
+		<img alt="" src="image/register.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption">
+		<div class="card-header text-white bg-success">
+		<div class="card-title"><h5>
+		点击员工档案，此处支持高级查询，如图：</h5></div></div></figcaption>
+		<img alt="" src="image/empinfo.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		可以对员工进行操作，但是只支持基本信息修改，至于其他修改后面将详细介绍</div>
+		</figcaption>
+		<img alt="" src="image/empgenghai.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption">
+		<div class="card-header text-white bg-success">
+		考勤管理模块，增加对考勤数据可视化的支持，可以动态实时查看当天或者一个时间段内考勤情况</div>
+		</figcaption>
+		<img alt="" src="image/kaoqinkeshihua.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		考勤信息总表可以查看各部门各岗位各时间段的考勤情况，并支持数据的导出</div>
+		</figcaption>
+		<img alt="" src="image/kaoqinzongbiao.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption" ><div class="card-header text-white bg-success">
+		特别说明：手动考勤是为了员工遇到打卡异常等一类的情况</div>
+		</figcaption>
+		<img alt="" src="image/kaoqinluru.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		部门与任务模块
+		首先支持对部门信息的增删改查操作，包括部门的福利绩效的修改，福利与绩效后面详细介绍</div>
+		</figcaption>
+		<img alt="" src="image/bumeninfo.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		人事调动与任务分发主要有如下功能
+			员工在员工端发送职位调动与离职申请，管理员收到信息后可以选择同意或不同意
+			选择同意将会跳转到员工岗位调整界面，管理员不可私自修改员工的部门岗位信息
+			任务列表将会给每个部门发送任务</div>
+			</figcaption>
+		<img alt="" src="image/renshidiandong.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		考核汇总可以查询各部门的每个月考核情况，将每个部门考核情况数据导出，方便年终汇总</div>
+			</figcaption>
+		<img alt="" src="image/kaohehuizong.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		奖惩管理功能是根据员工的考勤情况表计算员工加班的情况，并且自动计算应得奖励</div>
+		</figcaption>
+		<img alt="" src="image/jiangchengjisuan.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		通知广播
+		默认给全员发送消息，也可以根据员工的工号发送信息，并且支持离线消息。
+		公司任何通知，都由此入口发送。</div></figcaption>
+		<img alt="" src="image/tongzhi.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+			公司内所有收到员工发来的消息由此查看，如果有新消息，则会提醒。		
+		</div></figcaption>
+		<img alt="" src="image/msg.png" class="figure-img img-fluid rounded">
+		</figure>
+		<figure class="figure">
+		<figcaption class="figure-caption"><div class="card-header text-white bg-success">
+		薪资管理
+		根据每个员工的考勤信息，奖惩信息一键计算员工当月赢得工资，并且支持数据的导出，员工端亦可查看。</div>
+		</figcaption>
+		<img alt="" src="image/xinziguanli.png" class="figure-img img-fluid rounded">
+		</figure>
+		</div>
+		<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				$("body").niceScroll({
+				    cursorcolor: "rgb(110, 110, 109)", //滚动条的颜色   
+				    cursoropacitymax: 1, //滚动条的透明度，从0-1   
+				    touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备   
+				    cursorwidth: "8px", //滚动条的宽度   
+				    cursorborder: "0", // 游标边框css定义    
+				    cursorborderradius: "5px", //以像素为光标边界半径  圆角   
+				    autohidemode: true, //是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条   
+				    zindex: "auto", //给滚动条设置z-index值    
+				    railpadding: {
+				        top: 0,
+				        right: -4,
+				        left: 0,
+				        bottom: 0
+				    }, //滚动条的位置
+				});
+			})
+		</script>
+</body>
+</html>

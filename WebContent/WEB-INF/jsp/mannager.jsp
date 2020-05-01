@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>微人事</title>
+<title>简人事</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
+<link rel="shortcut icon" href="image/favicon.ico" />
+<link rel="icon"href="image/favicon.ico" />
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/style3.css">
 <!-- Font Awesome CSS-->
@@ -45,10 +47,10 @@
 				class="sidenav-header d-flex align-items-center justify-content-center">
 				<!-- User Info-->
 				<div class="sidenav-header-inner text-center">
-					<img src="image/avatar-7.jpg" alt="person"
+					<img src="image/hm.jpg" alt="person"
 						class="img-fluid rounded-circle">
-					<h2 class="h5">${GONG_HAO}</h2>
-					<span>管理员</span>
+					<span class="fa fa-user-md" style="color: white;">&nbsp;&nbsp;账号:${GONG_HAO}</span>
+					<span class="fa fa-user" style="color: white;">&nbsp;&nbsp;${manname}</span>
 				</div>
 				<!-- Small Brand information, appears on minimized sidebar-->
 				<div class="sidenav-header-logo">
@@ -61,39 +63,40 @@
 				<h5 class="sidenav-heading">导航栏</h5>
 				<ul id="side-main-menu" class="side-menu list-unstyled">
 					<li><a href="#exampledropdownDropdown0" aria-expanded="false"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>员工管理
+						data-toggle="collapse"> <i class="fa fa-folder-open"></i>人事信息
 					</a>
 						<ul id="exampledropdownDropdown0" class="collapse list-unstyled ">
-							<li id="register" src="empreg.action"><a href="javascript:void(0)"><span >员工注册</span></a></li>
-							<li id="yuangong" src="toList.action"><a href="javascript:void(0)"><span >员工信息</span></a></li>
+							<li id="register" src="empreg.action"><a href="javascript:void(0)"><span class="fa fa-edit">&nbsp;员工注册</span></a></li>
+							<li id="yuangong" src="toList.action"><a href="javascript:void(0)"><span class="fa fa-list">&nbsp;员工档案</span></a></li>
 						</ul></li>
 					<li><a href="#exampledropdownDropdown1" aria-expanded="false"
 						data-toggle="collapse"> <i class="icon-interface-windows"></i>考勤管理
 					</a>
 						<ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
-							<li id="kaoqinqingkuang" src="kqqk.action"><a href="javascript:void(0)"><span >考勤实时分布图</span></a></li>
-							<li id="kaoqinzongbiao" src="kqzb.action"><a href="javascript:void(0)"><span >考勤信息总表</span></a></li>
-							<li id="shoudongtianjia" src="sdtj.action"><a href="javascript:void(0)"><span >手动录入考勤</span></a></li>
+							<li id="kaoqinqingkuang" src="kqqk.action"><a href="javascript:void(0)"><span class="fa fa-eye">&nbsp;考勤实时分布图</span></a></li>
+							<li id="kaoqinzongbiao" src="kqzb.action"><a href="javascript:void(0)"><span class="fa fa-table">&nbsp;考勤信息总表</span></a></li>
+							<li id="shoudongtianjia" src="sdtj.action"><a href="javascript:void(0)"><span class="fa fa-plus">&nbsp;手动录入考勤</span></a></li>
 						</ul></li>
 					<li><a href="#exampledropdownDropdown2" aria-expanded="false"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>部门管理
+						data-toggle="collapse"> <i class="fa fa-tags"></i >部门与任务
 					</a>
 						<ul id="exampledropdownDropdown2" class="collapse list-unstyled ">
-							<li id="departinfo" src="tobmgl.action"><a href="javascript:void(0)"><span >部门信息管理</span></a></li>
-							<li id="renshidiaodong" src="bmcygl.action"><a href="javascript:void(0)"><span >人事调动与任务分发</span></a></li>
-							<li id="jixiaokaohe" src="jxpd.action"><a href="javascript:void(0)"><span >绩效评定与考核</span></a></li>
+							<li id="departinfo" src="tobmgl.action"><a href="javascript:void(0)"><span class="fa fa-chevron-right">&nbsp;部门信息管理</span></a></li>
+							<li id="renshidiaodong" src="bmcygl.action"><a href="javascript:void(0)"><span class="fa fa-chevron-right">&nbsp;人事调动与任务分发</span></a></li>
+							<li id="jixiaokaohe" src="jxpd.action"><a href="javascript:void(0)"><span class="fa fa-chevron-right">&nbsp;部门绩效考核</span></a></li>
+							<li id="kaohehuizong" src="khhztable.action"><a href="javascript:void(0)"><span class="fa fa-chevron-right">&nbsp;考核汇总表</span></a></li>
 						</ul></li>
 					<!-- 日常管理 -->	
 					<li><a href="#exampledropdownDropdown4" aria-expanded="false"
-						data-toggle="collapse"> <i class="icon-interface-windows"></i>员工日常管理
+						data-toggle="collapse"> <i class="icon-interface-windows"></i>公司日常管理
 					</a>
 						<ul id="exampledropdownDropdown4" class="collapse list-unstyled ">
-							<li id="qingjiashenqing" src="qjsq.action"><a href="javascript:void(0)"><span >请假申请单</span></a></li>
-							<li id="tiaoxiuguanli" src="txgl.action"><a href="javascript:void(0)"><span >调补休管理</span></a></li>
-							<li id="buchangjiahua" src="bcjh.action"><a href="javascript:void(0)"><span >奖惩管理</span></a></li>
-							<li data-toggle="modal"  data-target="#broadmodal"><a href="javascript:void(0)"><span >通知广播</span></a></li>
+							<li id="qingjiashenqing" src="qjsq.action"><a href="javascript:void(0)"><span class="fa fa-chevron-right">&nbsp;请假申请单</span></a></li>
+							<li id="tiaoxiuguanli" src="txgl.action"><a href="javascript:void(0)"><span class="fa fa-chevron-right">&nbsp;调补休管理</span></a></li>
+							<li id="buchangjiahua" src="bcjh.action"><a href="javascript:void(0)"><span class="fa fa-chevron-right">&nbsp;奖惩管理</span></a></li>
+							<li data-toggle="modal"  data-target="#broadmodal"><a href="javascript:void(0)"><span class="fa fa-bullhorn">&nbsp;通知广播</span></a></li>
 						</ul></li>
-					<li id="paibanguanli" src="pbgl.action"><a href="javascript:void(0)"><span><i class="icon-interface-windows"></i>薪资管理</span></a></li>
+					<li id="paibanguanli" src="pbgl.action"><a href="javascript:void(0)"><span><i class="fa fa-money"></i>薪资管理</span></a></li>
 					</a></li>
 				</ul>
 			</div>
@@ -147,14 +150,10 @@
 												</div>
 											</div>
 									</a></li>
-									<!-- <li><a rel="nofollow" href="#"
-										class="dropdown-item all-notifications text-center"> <strong>
-												<i class="fa fa-bell"></i>view all notifications
-										</strong></a></li> -->
 								</ul></li>
 							
 							<!-- Log out-->
-							<li class="nav-item"><a href="login.html"
+							<li class="nav-item"><a href="logout.action"
 								class="nav-link logout"> <span
 									class="d-none d-sm-inline-block">退出</span><i
 									class="fa fa-sign-out"></i></a></li>
@@ -166,13 +165,15 @@
 		</header>
 		<!-- 添加iframe src内容动态添加-->
 		<div class="embed-responsive embed-responsive-21by9">
-			<iframe name="manage" id="mframe" class="embed-responsive-item" src=""></iframe>
+			<iframe name="manage" id="mframe" class="embed-responsive-item" src="userhelp.html"></iframe>
 		 </div>
 	</div>
 	<!-- JavaScript files-->
 
 	<script src="vendor/popper.js/umd/popper.min.js"></script>
-	<script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
+<!-- 	<script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script> -->
+	<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
+	<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 	<script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
 	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
@@ -236,6 +237,7 @@
 		toSomeWhere("buchangjiahua");
 		toSomeWhere("tongzhiguangbo");
 		toSomeWhere("paibanguanli");
+		toSomeWhere("kaohehuizong");
 		document.onreadystatechange = function () {//即在加载的过程中执行下面的代码
 			if(document.readyState=="complete"){//complete加载完成
 				$(".loading").fadeOut();
@@ -274,7 +276,25 @@
              var msg = document.getElementById("inputMsg").value;
              var sendtouser = document.getElementById("username").value;
              var senduser = document.getElementById("senduser").value;
+             var thetotalmsg = sendtouser+"|"+msg+"|"+senduser;
+             var temptime = new Date();
+             var year = temptime.getFullYear();
+             var month = temptime.getMonth()+1;
+             var day = temptime.getDay();
+             month = month<10?'0'+month:month;
+             day = day<10?'0'+day:day;
+             var daytime = year+'/'+month+'/'+day;
              websocket.send(sendtouser+"|"+msg+"|"+senduser);//调用后台handleTextMessage方法
+             //并且更新数据库
+             if(sendtouser == "everyone"){
+            	 $.post("updatepublicnotice.action",{content:thetotalmsg,daytime:daytime},function(data,status){
+            		 
+            	 })
+             }else {
+				$.post("updateprivatenotice.action",{content:thetotalmsg,daytime:daytime,gonghao:sendtouser,status:"未读"},function(data,status){
+            		 
+            	 })
+             }
              alert("发送成功！")
          } else {
              alert("连接失败!");

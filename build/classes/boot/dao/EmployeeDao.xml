@@ -36,7 +36,7 @@
 				and id=#{id}
 			</if>
 			<if test="name != null and name!=''">
-				and name like concat('%',#{name},'%')
+				and e.name like concat('%',#{name},'%')
 			</if>
 			<if test="gonghao != null and gonghao !=''">
 				and gonghao = #{gonghao}

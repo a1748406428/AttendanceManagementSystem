@@ -27,7 +27,7 @@
 		and (startcheck between str_to_date("08:00","%H:%i") and
 		str_to_date("09:00","%H:%i"))
 		<if test="did != null">
-			and did = #{did}
+			and p.did = #{did}
 		</if>
 	</select>
 	<!-- 查询各部门缺勤人员 -->
@@ -36,7 +36,7 @@
 		<include refid="checkTime" />
 		and (absence="是")
 		<if test="did != null">
-			and did = #{did}
+			and p.did = #{did}
 		</if>
 	</select>
 	<!-- 查询各部门迟到人员 -->
@@ -46,7 +46,7 @@
 		and (startcheck between str_to_date("09:00","%H:%i") and
 		str_to_date("21:00","%H:%i"))
 		<if test="did != null">
-			and did = #{did}
+			and p.did = #{did}
 		</if>
 	</select>
 	<!-- 查询正常人数 -->

@@ -10,6 +10,7 @@
 				and daytime = #{time}
 			</if>
 		</where>
+		order by str_to_date(daytime,'%Y/%m/%d') DESC
 		<if test="offset != null and limit != null">
 			limit #{offset},#{limit}
 		</if>
@@ -23,12 +24,16 @@
 			</if>
 		</where>
 	</select>
-	<!-- 修改状态 -->
+	<!-- 修改个人假条状态 -->
+	<update id="updateJiaTiaoStatus">
+		update t_personqingjia set status = #{status} where id = #{id}
+	</update>
+	<!-- 修改集体假条状态 -->
 	<update id="updateJiTiJiaTiaoStatus">
 		update t_departqingjia set status = #{status} where id = #{id}
 	</update>
 	<!-- 删除单个信息 -->
-	<delete id="deleteMsgByEid">
+	<delete id="deletePersonJiaTiaoById">
 		delete from t_personqingjia where id = #{id}
 	</delete>
 	<!-- 查询集体假条信息 -->
@@ -42,6 +47,7 @@
 				and daytime = #{time}
 			</if>
 		</where>
+		order by daytime DESC
 		<if test="offset != null and limit != null">
 			limit #{offset},#{limit}
 		</if>
@@ -52,6 +58,10 @@
 				and daytime = #{time}
 			</if>
 	</select>
+	<!-- 删除集体假条信息 -->
+	<delete id="deletejitiJiaTiao">
+		delete from t_departqingjia where id = #{id}
+	</delete>
 	<!-- 调用存储过程，向奖励表中存储数据 -->
 	<select id="addIntoJiaBanCount" statementType="CALLABLE">
 		call addintojiangli(#{monthstart,mode=IN},
@@ -61,17 +71,20 @@
 	<select id="selectJiangLiInFo" resultType="boot.pojo.JiangLiInFoBean" parameterType="Map">
 		select * from t_empbuchang
 		<where>
-			<if test="month != null">
+			<if test="month != null and month != ''">
 				and month = #{month}
 			</if>
-			<if test="offset != null and limit != null">
+		</where>
+		<if test="offset != null and limit != null">
 			limit #{offset},#{limit}
 		</if>
-		</where>
 	</select>
 	<!-- 查询所受奖励员工的总人数 -->
 	<select id="jiangLiTotalCount" resultType="Integer">
 		select count(id) from t_empbuchang
+		<if test="month != null and month != ''">
+				and month = #{month}
+			</if>
 	</select>
 	<!-- 根据id查询员工基础工资 -->
 	<select id="selectEmpBaseSalary" resultType="String">
@@ -89,5 +102,14 @@
 		</set>
 		where id = #{id}
 	</update>
-	
+	<!-- 添加信息到公共消息库 -->
+	<insert id="addPublicNotice" useGeneratedKeys="true" keyProperty="id">
+		insert into t_publicnotice (content,daytime)
+		values(#{content},#{daytime})
+	</insert>
+	<!-- 添加信息到私人消息库 -->
+	<insert id="addPrivateNotice" useGeneratedKeys="true" keyProperty="id">
+		insert into t_privatenotice (content,daytime,gonghao,status)
+		values(#{content},#{daytime},#{gonghao},#{status})
+	</insert>
 </mapper>

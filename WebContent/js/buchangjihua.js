@@ -7,7 +7,31 @@ $(function() {
         d = d < 10 ? ('0' + d) : d;
         return y + '/' + m + '/' + d;
     }
-    $("#hzbtn").click(function () {
+
+	$("#hzform").validate({
+		rules:{
+			monthstart:"required",
+			monthend:"required",
+			
+		},
+		messages:{
+			monthstart:"必选",
+			monthend:"必选",
+		},
+        //验证成功后提交参数
+        submitHandler : function(form) {
+        	var monthstartbefore = $("#monthstart").val();
+            var monthendbefore = $("#monthend").val();
+            var monthstart = formatDate(new Date(monthstartbefore)).toString();
+            var monthend = formatDate(new Date(monthendbefore)).toString();
+            $.post("huizong.action",{monthstart:monthstart,monthend:monthend},function(data,status){
+                if(data!=null){
+                    alert("汇总成功")
+                }
+            })
+        }
+	})	
+   /* $("#hzbtn").click(function () {
         var monthstartbefore = $("#monthstart").val();
         var monthendbefore = $("#monthend").val();
         var monthstart = formatDate(new Date(monthstartbefore)).toString();
@@ -17,7 +41,7 @@ $(function() {
                 alert("汇总成功")
             }
         })
-        })
+        })*/
     $("#jcbtn").click(function () {
     	var day = new Date($("#month").val());
     	var year = day.getFullYear();

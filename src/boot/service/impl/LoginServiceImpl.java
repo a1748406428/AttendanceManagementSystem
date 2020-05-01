@@ -18,7 +18,6 @@ public class LoginServiceImpl implements LoginService {
 		}else {
 			return false;
 		}
-	
 }
 	//判断管理员账号和密码
 	@Override

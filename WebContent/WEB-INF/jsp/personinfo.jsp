@@ -21,14 +21,15 @@
 		<div class="xtgl-content">
 			<div>
 			<div class="container-fluid">
-			<div class="card card-text-white">
-				<div class="card-header">
-					<h4 class="card-title">个人基本信息</h4>
+			<div class="card border-primary">
+				<div class="card-header border-primary">
+					<!-- <h4 class="card-title">个人基本信息</h4> -->个人基本信息
 				 </div>
-			<div class="card-body">
+			<div class="card-body mb-3  text-dark" style="background: white;">
+				 
 				<div class="row">
 				<div class="col-md-6"></div>
-				<div class="col-md-2"><img src="https://www.w3cschool.cn/attachments/image/20180524/1527144620597215.png" class="img-fluid""></div>
+				<div class="col-md-2"><img class="card-img-top" src="https://www.w3cschool.cn/attachments/image/20180524/1527144620597215.png" alt="Card image cap"></div>
 			</div>
 			<div class="row">
 				<div class="col-md-1">姓名</div>

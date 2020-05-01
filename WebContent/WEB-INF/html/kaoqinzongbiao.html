@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>考勤总表</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+</head>
+<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+<body id="content">
+<div class="container-fluid">
+	<span id="toolbar">
+	<div class="form-inline">
+		<div class="form-control" style="background: rgb(222, 224, 226);">选择时间:</div>
+		<input type="month" class="form-control" id="time"><span class="form-control" style="color: red">岗位、部门条件请选其一</span>
+		<div class="form-control" style="background: rgb(222, 224, 226);">选择部门:</div>
+		<select id="departselect" class="custom-select">
+				<option value="">所属部门</option>
+				<option value="1">研发部</option>
+				<option value="2">运营部</option>
+				<option value="3">运维部</option>
+				<option value="4">产品部</option>
+				<option value="5">财务部</option>
+				<option value="6">法务部</option>
+			</select>&nbsp;&nbsp;&nbsp;
+		<div class="form-control" style="background: rgb(222, 224, 226);">选择岗位:</div>
+		<select id="postselect" class="custom-select">
+			<option value="">-请选择-</option>
+			<option value="1">Java研发</option>
+			<option value="2">前端开发</option>
+			<option value="3">大数据开发</option>
+			<option value="4">C++开发</option>
+			<option value="5">系统性能优化</option>
+			<option value="6">UI交互</option>
+			<option value="7">产品推广</option>
+			<option value="8">Linux运维</option>
+			<option value="9">自动化运维</option>
+			<option value="10">产品评测</option>
+			<option value="11">初级会计</option>
+			<option value="12">审计</option>
+			<option value="13">财务助理</option>
+			<option value="14">法务助理</option>
+			<option value="15">法务经理</option>
+		</select>&nbsp;&nbsp;&nbsp;
+		<button type="button" class="btn btn-outline-primary" id="selectkaoqin">查询</button>
+		</div>
+	</span>
+	<table id="kaoqintable" style="table-layout:fixed;" class="table table-condensed table-hover table-bordered">
+			<thead >
+				<tr>
+					<th data-field="state" data-checkbox='ture'></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>	
+		</table>
+</div>
+	<script type="text/javascript" src= "https://code.jquery.com/jquery-3.3.1.min.js"></script> <!--  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script> <!-- integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous" -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" ></script> <!-- integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous" -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
+    <script type="text/javascript" src="js/tableExport.js"></script>
+    <script type="text/javascript" src="js/kaoqinzongbiao.js"></script>
+</body>
+</html>

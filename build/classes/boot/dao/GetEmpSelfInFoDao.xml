@@ -33,9 +33,46 @@
 		</where>
 		order by str_to_date(daytime,'%Y/%m/%d') DESC
 	</select>
+	<!-- 查询工资 -->
 	<select id="selectEmpPersonSalary" resultType="boot.pojo.EmpSalaryBean">
 		select e.name,es.month,es.totalsalary,es.jiabangongzi,es.tax,es.endsalary 
 		from t_emptotalsalary es,t_employee e
 		where es.eid = e.id and e.gonghao = #{gonghao}
 	</select>
+	<!-- 更新意向申请 -->
+	<insert id="addInToPostApplicate" useGeneratedKeys="true" keyProperty="id">
+			insert into t_postchangeapplication(name,content,time,eid,status)
+			values(#{name},#{content},#{time},#{eid},#{status})
+	</insert>
+	<!-- 添加离职申请 -->
+	<insert id="addReSignApplicate" useGeneratedKeys="true" keyProperty="id">
+		insert into t_resignationapplication(name,content,time,eid,status)
+			values(#{name},#{content},#{time},#{eid},#{status})
+	</insert>
+	<!-- 实现打卡 -->
+	<insert id="autoDaka" statementType="CALLABLE" parameterType="Map">
+		call addandupdateatt(#{inchecktime,mode=IN},
+							#{ingonghao,mode=IN},
+							#{startcheckorendcheck,mode=IN}
+		)	
+	</insert>
+	<!-- 根据查询员工姓名 -->
+	<select id="selectEmpName" resultType="String">
+		select name from t_employee where gonghao = #{gonghao}
+	</select>
+	<!-- 查看任务中心 -->
+	<select id="scanTasks" resultType="boot.pojo.TaskBean">
+		select t.id,t.content,t.daytime,t.deadline,t.leaderid,t.progress from t_task t,t_leader l where (select e.id from t_employee e
+		where e.gonghao = #{gonghao}
+		) = l.eid and l.id = t.leaderid
+		order by daytime DESC;
+	</select>
+	<!-- 更新任务状态 -->
+	<update id="updateTaskProgress">
+		update t_task set progress = #{progress} where id = #{id}
+	</update>
+	<!-- 更新消息状态 -->
+	<update id="updatemsgstatus">
+		update t_privatenotice set status = #{status} where id = #{id}
+	</update>
 </mapper>
