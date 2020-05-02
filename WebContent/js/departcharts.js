@@ -12,8 +12,16 @@ $(function() {
     	var end = $("#end").val();
     	var startTimeBefore = new Date(start);
     	var endtimeBefore = new Date(end);
-    	var startTime = formatDate(startTimeBefore).toString();
-    	var endTime = formatDate(endtimeBefore).toString();
+    	var startTime = '';
+    	var endTime = '';
+    	if((start != null && start.length>0) && (end != null && end.length >0)){
+    		startTime = formatDate(startTimeBefore);
+    		endTime = formatDate(endtimeBefore);
+    	}else{
+    		var today = new Date();
+    		startTime = formatDate(today);
+    		endTime = formatDate(today);
+    	}
     	$("#main1,#main2,#main3,#main4,#main5,#main6").show();
     	$("#main7").hide();
         // 基于准备好的dom，初始化echarts实例
