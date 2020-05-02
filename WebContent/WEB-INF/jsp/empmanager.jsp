@@ -153,7 +153,7 @@
 			var month = (today.getMonth() + 1 )<10?'0'+(today.getMonth() + 1 ):(today.getMonth() + 1 );
 			var hour = today.getHours()<10?'0'+today.getHours():today.getHours();
 			var min = today.getMinutes()<10?'0'+today.getMinutes():today.getMinutes();
-			var daytime = today.getDate();
+			var daytime = today.getDate()<10?'0'+today.getDate():today.getDate();
 			var checktime = year+'/'+month+'/'+daytime;
 			var gonghao = '${GONG_HAO}';
 			var startcheckorendcheck = hour+':'+min;
